@@ -3,15 +3,15 @@ Linkis
 
 [![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
 
-English | [中文](zh_CN/README.md)
+English | [中文](zh_CN)
 
 # Introduction
 
-&nbsp; &nbsp; &nbsp; &nbsp;Linkis builds a layer of computation middleware between the upper-level applications and the underlying engines. By using a series of standard interfaces such as REST/WS/JDBC provided by Linkis, the upper-level applications can easily access the underlying engines such as MySQL/Spark/Hive/Presto/Flink, etc and achieve the intercommunication of user resources like unified variables, scripts, UDFs, functions and resource files.
- 
-&nbsp; &nbsp; &nbsp; &nbsp;As a computation middleware, Linkis provides powerful connectivity, reuse, expansion, and management capabilities. And by decoupling the application layer and the engine layer, it simplifies the complex network call relationship, and thus reduce the overall complexity and save the development and maintenance  costs as well.
- 
-&nbsp; &nbsp; &nbsp; &nbsp;Since Linkis was open sourced in 2019, it has accumulated nearly **700** trial companies and **1000+** sandbox trial users, which involved in multiple industries, ranging from Internet, finance to communications and so on. Meanwhile, many companies have already used Linkis as a unified entrance for the underlying computation and storage engine components of the big data platform.
+&nbsp; &nbsp; &nbsp; &nbsp;Linkis builds a layer of computation middleware between upper applications and underlying engines. By using standard interfaces such as REST/WS/JDBC provided by Linkis, the upper applications can easily access the underlying engines such as MySQL/Spark/Hive/Presto/Flink, etc., and achieve the intercommunication of user resources like unified variables, scripts, UDFs, functions and resource files at the same time.
+                           
+&nbsp; &nbsp; &nbsp; &nbsp;As a computation middleware, Linkis provides powerful connectivity, reuse, expansion, and computation governance capabilities. By decoupling the application layer and the engine layer, it simplifies the complex network call relationship, and thus reduces the overall complexity and saves the development and maintenance costs as well.
+                           
+&nbsp; &nbsp; &nbsp; &nbsp;Since the first release of Linkis in 2019, it has accumulated more than 700 trial companies and 1000+ sandbox trial users, which involving diverse industries, from finance, banking, tele-communication, to manufactory, internet companies and so on. Lots of companies have already used Linkis as a unified entrance for the underlying computation and storage engines of the big data platform.
 
 
 ![linkis-intro-01](en_US/Images/Architecture/linkis-intro-01.png)
@@ -39,7 +39,7 @@ English | [中文](zh_CN/README.md)
  # Integrated engines
 
 | Engine     | Description                                                          | Contributor                                                           | Version    | Released? | User Manual |
-| --------------- | -------------------------------------------------------------------- | --------------------------------------------------------------------- | ---------- | ------ |
+| --------------- | -------------------------------------------------------------------- | ------------------ | ------------- | ------------ |  ---------------------- |
 | **Flink**  | Flink EngineConn. Supports the submission of FlinkSQL code, and also supports the submission of Flink Jar to Linkis Manager to start a new Yarn application. | [hui zhu](https://github.com/liangqilang) & WeDataSphere | Linkis-1.1.0 | No, Expected in mid-2021 | To be perfected |
 | **Impala**     | Impala EngineConn. Supports the submission of Impala SQL code. | [hui zhu](https://github.com/liangqilang) | Linkis-0.12.0 | No, Expected in April | To be perfected |
 | **Presto**  | Presto EngineConn. Supports the submission of Presto SQL code. | [wForget](https://github.com/wForget)  | Linkis-0.11.0 | Open sourced | [Presto User Manual](zh_CN/Engine Usage Documentations/Presto_User_Manual.md) |

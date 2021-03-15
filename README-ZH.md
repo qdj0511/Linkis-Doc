@@ -42,7 +42,7 @@ Linkis
 # 已集成引擎列表
 
 | Engine     | Description                                                          | Contributor                                                           | Version    | 是否已发版? | 使用文档 |
-| --------------- | -------------------------------------------------------------------- | --------------------------------------------------------------------- | ---------- | ------ |
+| --------------- | -------------------------------------------------------------------- | ------------------ | ------------- | ------------ |  ---------------------- |
 | **Flink**  | Flink 引擎。支持提交 FlinkSQL 代码，也支持以 Flink Jar 的方式提交给 Linkis Manager 启动 Yarn 应用。 | [hui zhu](https://github.com/liangqilang) & WeDataSphere | Linkis-1.1.0 | 否，预计2021年中 | 待完善 |
 | **Impala**     | Impala 引擎。支持提交 Impala SQL 脚本。 | [hui zhu](https://github.com/liangqilang) | Linkis-0.12.0 | 否，预计4月 | 待完善 |
 | **Presto**  | Presto 引擎。支持提交 PrestoSQL 脚本。 | [wForget](https://github.com/wForget)  | Linkis-0.11.0 | 已开源 | [Presto 引擎使用文档](zh_CN/Engine Usage Documentations/Presto_User_Manual.md) |

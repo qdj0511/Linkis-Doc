@@ -249,7 +249,9 @@ EUREKA_URL=http://\$EUREKA_INSTALL_IP:\$EUREKA_PORT/eureka/
 
 EUREKA_URL=http://\$EUREKA_INSTALL_IP:\$EUREKA_PORT/eureka/,**http:/server2:port/eureka/**
 ```
+
 同理，在server2的机器上，需要将**conf/linkis-env.sh**中的
+
 ```
 EUREKA_URL=http://\$EUREKA_INSTALL_IP:\$EUREKA_PORT/eureka/
 
@@ -257,6 +259,7 @@ EUREKA_URL=http://\$EUREKA_INSTALL_IP:\$EUREKA_PORT/eureka/
 
 EUREKA_URL=http://\$EUREKA_INSTALL_IP:\$EUREKA_PORT/eureka/,**http:/server1:port/eureka/**
 ```
+
 修改完之后启动微服务，从web端进入eureka注册界面，可以看到已经成功注册到eureka的微服务，并且DS
 Replicas也会显示集群相邻的副本节点。
 

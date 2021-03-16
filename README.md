@@ -69,7 +69,7 @@ English | [中文](zh_CN)
 
 # Contributing
 
-&nbsp; &nbsp; &nbsp; &nbsp;Before contributing document, please read the [Document Contribution Specification]() to understand how to contribute document and submit your contribution.
+&nbsp; &nbsp; &nbsp; &nbsp;Before contributing, please read the [Linkis Contribution Specification]() to understand how to contribute and submit your contribution.
 
 ----
 

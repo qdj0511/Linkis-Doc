@@ -333,8 +333,8 @@ Replicas也会显示集群相邻的副本节点。
     │ ├── linkis-ps-datasource  
     │ └── linkis-ps-publicservice  
     └── linkis-spring-cloud-services  
-    ├── linkis-mg-eureka  
-    └── linkis-mg-gateway
+    │ ├── linkis-mg-eureka  
+    └─├── linkis-mg-gateway
 
     包含计算治理、公共增强、微服务管理三大微服务模块。每个微服务下包含linkis-gc.log、linkis.log、linkis.out三个日志。分别对应服务的GC日志、服务日志、服务的System.out日志。
 

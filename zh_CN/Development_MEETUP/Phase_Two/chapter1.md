@@ -282,9 +282,9 @@ Replicas也会显示集群相邻的副本节点。
 | ps-bml               | ps-bml               |
 | ps-cs                | ps-cs                |
 | ps-datasource        | ps-datasource        |
-| configuration        | ps-publicservice     |
+| configuration        |                      |
 | instance-label       |                      |
-| jobhistory           |                      |
+| jobhistory           | ps-publicservice     |
 | variable             |                      |
 | udf                  |                      |
 

@@ -60,7 +60,7 @@ Linkis1.0的目录结构与0.X版本相差巨大，0.X的每个微服务都时�
 
 # 安装目录结构
 
-Linkis1.0简化后的目录结构如下，其中蓝色标注地为用户安装使用时的必定会使用的目录项其他目录项初次使用无特殊情况无需关心：
+Linkis1.0简化后的目录结构如下，其中加粗标注地为用户安装使用时的必定会使用的目录项其他目录项初次使用无特殊情况无需关心：
 
 ├── bin 安装目录  
 │ ├── checkEnv.sh ── 环境变量检测  
@@ -247,7 +247,7 @@ EUREKA_URL=http://\$EUREKA_INSTALL_IP:\$EUREKA_PORT/eureka/
 
 修改为：
 
-EUREKA_URL=http://\$EUREKA_INSTALL_IP:\$EUREKA_PORT/eureka/,**http:/server2:port/eureka/**
+EUREKA_URL=http://\$EUREKA_INSTALL_IP:\$EUREKA_PORT/eureka/,http:/server2:port/eureka/
 ```
 
 同理，在server2的机器上，需要将**conf/linkis-env.sh**中的
@@ -257,7 +257,7 @@ EUREKA_URL=http://\$EUREKA_INSTALL_IP:\$EUREKA_PORT/eureka/
 
 修改为：
 
-EUREKA_URL=http://\$EUREKA_INSTALL_IP:\$EUREKA_PORT/eureka/,**http:/server1:port/eureka/**
+EUREKA_URL=http://\$EUREKA_INSTALL_IP:\$EUREKA_PORT/eureka/,http:/server1:port/eureka/
 ```
 
 修改完之后启动微服务，从web端进入eureka注册界面，可以看到已经成功注册到eureka的微服务，并且DS

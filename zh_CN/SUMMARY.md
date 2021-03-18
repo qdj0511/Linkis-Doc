@@ -64,3 +64,4 @@
     * [第二期](Development_MEETUP/Phase_Two/README.md)
         * [Linkis1.0 编译和安装部署介绍](Development_MEETUP/Phase_Two/chapter1.md)
         * [Linkis1.0 使用方法与Client介绍](Development_MEETUP/Phase_Two/chapter2.md)
+        * [Linkis1.0 编译部署和使用方法介绍录播](https://www.bilibili.com/video/BV1Xy4y147VQ)

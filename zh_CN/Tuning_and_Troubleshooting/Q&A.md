@@ -1,12 +1,14 @@
 #### Q1、linkis启动报错：NoSuchMethodErrorgetSessionManager()Lorg/eclipse/jetty/server/SessionManager
 
 具体堆栈： 
+```
 Failed startup of context
 o.s.b.w.e.j.JettyEmbeddedWebAppContext@6c6919ff{application,/,[file:///tmp/jetty-docbase.9102.6375358926927953589/]
 ,UNAVAILABLE} java.lang.NoSuchMethodError: org.eclipse.jetty.server.session.SessionHandler.getSessionManager()
 Lorg/eclipse/jetty/server/SessionManager; at
 org.eclipse.jetty.servlet.ServletContextHandler\$Context.getSessionCookieConfig(ServletContextHandler.java:
 1415) ~[jetty-servlet-9.3.20.v20170531.jar:9.3.20.v20170531]
+```
 
 解法：jetty-servlet 和 jetty-security版本需要从9.3.20升级为9.4.20；
 
@@ -89,6 +91,7 @@ org.eclipse.jetty.servlet.ServletContextHandler\$Context.getSessionCookieConfig(
 
 #### Q13、hive引擎执行时，报如下错误Lcom/google/common/collect/UnmodifiableIterator：
 
+```
 2021-03-16 13:32:23.304 ERROR [pool-2-thread-1]
 com.webank.wedatasphere.linkis.engineplugin.hive.executor.HiveEngineConnExecutor 140 run - query failed, reason :
 java.lang.IllegalAccessError: tried to access method com.google.common.collect.Iterators.emptyIterator()
@@ -105,11 +108,13 @@ at com.webank.wedatasphere.linkis.engineplugin.hive.executor.HiveEngineConnExecu
 HiveEngineConnExecutor.scala:152) [linkis-engineplugin-hive-dev-1.0.0.jar:?]
 at com.webank.wedatasphere.linkis.engineplugin.hive.executor.HiveEngineConnExecutor$$anon$1.run(
 HiveEngineConnExecutor.scala:126) [linkis-engineplugin-hive-dev-1.0.0.jar:?]
+```
 
 解法：guava包冲突，干掉hive/dist/v1.2.1/lib下的guava-25.1-jre.jar；
 
 #### Q14、hive引擎执行时，报错误如下TaskExecutionServiceImpl 59 error - org/apache/curator/connection/ConnectionHandlingPolicy ：
 
+```
 2021-03-16 16:17:40.649 INFO  [pool-2-thread-1]
 com.webank.wedatasphere.linkis.engineplugin.hive.executor.HiveEngineConnExecutor 42 info -
 com.webank.wedatasphere.linkis.engineplugin.hive.executor.HiveEngineConnExecutor@36a7c96f change status Busy => Idle.
@@ -192,6 +197,7 @@ at java.lang.ClassLoader.loadClass(ClassLoader.java:424) ~[?:1.8.0_181]
 at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:349) ~[?:1.8.0_181]
 at java.lang.ClassLoader.loadClass(ClassLoader.java:357) ~[?:1.8.0_181]
 ... 39 more
+```
 
 解法：原因是Curator的版本和zookeeper的版本有对应关系。Curator2.X的吧，对于Curator2.X是支持Zookeeper3.4.X的，所以如果目前你是Zookeeper3.4.X的版本，还是使用Curator2.X的吧，比如：2.7.0。参考链接：https://blog.csdn.net/muyingmiao/article/details/100183768
 
@@ -205,6 +211,7 @@ at java.lang.ClassLoader.loadClass(ClassLoader.java:357) ~[?:1.8.0_181]
 
 #### Q16、spark引擎执行时，报如下错误NoClassDefFoundError: org/apache/hadoop/hive/ql/io/orc/OrcFile：
 
+```
 2021-03-19 15:12:49.227 INFO  [dag-scheduler-event-loop] org.apache.spark.scheduler.DAGScheduler 57 logInfo -
 ShuffleMapStage 5 (show at <console>:69) failed in 21.269 s due to Job aborted due to stage failure: Task 1 in stage 5.0
 failed 4 times, most recent failure: Lost task 1.3 in stage 5.0 (TID 139, cdh03, executor 6):
@@ -251,6 +258,8 @@ at java.lang.ClassLoader.loadClass(ClassLoader.java:424)
 at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:349)
 at java.lang.ClassLoader.loadClass(ClassLoader.java:357)
 ... 33 more
+
+```
 
 解法：cdh6.3.2集群spark引擎classpath只有/opt/cloudera/parcels/CDH-6.3.2-1.cdh6.3.2.p0.1605554/lib/spark/jars，需要新增hive-exec-2.1.1-cdh6.1.0.jar，然后重启spark。
 

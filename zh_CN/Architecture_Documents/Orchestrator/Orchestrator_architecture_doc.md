@@ -18,7 +18,8 @@ Orchestrator 整体架构设计
 - Optimizer(优化阶段)：完成对Logical Tree转换为Physical Tree，并对树进行优化，如命中缓存型的优化
 - Execution（执行）：调度执行物理计划的Physical Tree，按照依赖进行执行
 - Reheater（再热）：检测在执行阶段的可重试的失败Task（如ReTryExecption），调整物理计划重新执行
-- Plugins（插件）： 插件模块，主要用于Orchestrator对接外部模块进行使用，如EngineConnManagerPlugin用于对接LinkisManager和EngineConn完成对引擎的申请和任务执行
+- Plugins（插件）： 插件模块，主要用于Orchestrator对接外部模块进行使用，如EngineConnManagerPlugin用于对接LinkisManager和EngineConn完成对引擎的申请和任务执行\
+
 ![Orchestrator_arc](../../Images/Architecture/orchestrator/overall/Orchestrator_arc.png)
 
 ## 三. Orchestrator实体流转：
@@ -28,9 +29,11 @@ Orchestrator 整体架构设计
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;以下以交互式场景为例简单介绍，下面以codeLogicalUnit:`select * from test`的交互式Job为例，可视化各个阶段的树形图
 1. AST阶段：由Parser对ASTJob进行解析后的结构，Job和Stage有属性进行关联，Job里面有getStage信息，Stage里面有Job信息，不是通过parents和children决定（parents和children都为null）：
+
 ![Orchestrator_ast](../../Images/Architecture/orchestrator/overall/Orchestrator_ast.png)
 
 2. Logical阶段：由Plan对ASTJob进行转换后的结构，包含Job/stage/CodeTask，存在树形结构，关系由parents和children进行决定\,start和end由Desc决定：
+
 ![Orchestrator_Logical](../../Images/Architecture/orchestrator/overall/Orchestrator_Logical.png)
 
 3. Physical阶段：由Optimizer转换后的结构，包含Job/Stage/Code ExecTask，存在树形结构，关系由parents和children进行决定\,start和end由Desc决定：
@@ -51,6 +54,7 @@ Orchestrator 整体架构设计
 
 ### 4.4 Planner模块
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Planner模块主要完成对Ast阶段的Job和Stage转换为对应的LogicalTask，形式LogicalTree。Planner会构造LogicalTree，将Job解析为JobEndTask和JobStartTask，将Stage解析为StageEndTask和StageStartTask，以及将实际的执行单元转换为具体的LogicalTask（如对于交互式的CodeLogicalUnit，转为为CodeLogicalUnitTask）。如下图：
+
 ![Orchestrator_Logical](../../Images/Architecture/orchestrator/overall/Orchestrator_Logical.png)
 
 ### 4.5 Optimizer模块
@@ -74,19 +78,29 @@ Orchestrator 整体架构设计
 2. 第二步通过OrchestratorSession进行编排，获取Orchestration对象，编排后返回的唯一对象
 3. 第三步通过调用Orchestration 的执行方法机进行支持，支持异步和同步执行模式
 整体流程如下图所示：
+
 ![Orchestrator_progress](../../Images/Architecture/orchestrator/overall/Orchestrator_progress.png)
 
 ## 六. Orchestrator常用物理计划示例
 
 1. 交互式分析，拆封成两个Stage的类型
+
 ![Orchestrator_computation](../../Images/Architecture/orchestrator/overall/Orchestrator_computation.png)
+
 2. Command等只有function类的ExecTask
+
 ![Orchestrator_command](../../Images/Architecture/orchestrator/overall/Orchestrator_command.png)
+
 3. Reheat情型
+
 ![Orchestrator_reheat](../../Images/Architecture/orchestrator/overall/Orchestrator_reheat.png)
+
 4. 事务型
+
 ![Orchestrator_transication](../../Images/Architecture/orchestrator/overall/Orchestrator_transication.png)
+
 5. 命中缓存型
+
 ![Orchestrator_cache](../../Images/Architecture/orchestrator/overall/Orchestrator_cache.png)
 
 

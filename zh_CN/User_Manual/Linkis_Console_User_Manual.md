@@ -49,7 +49,6 @@
 
 >   ![./media/image4.png](Images/管理员视图.png)
 
->   3-4 管理员视图
 
 资源管理
 --------
@@ -114,8 +113,6 @@ ECM管理
 >   ![](Images/微服务管理界面.png)
 
 >   ![](Images/Eureka注册中心.png)
-
->   3-15 Eureka注册中心
 
 常见问题
 --------

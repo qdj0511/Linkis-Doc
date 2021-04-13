@@ -1,101 +1,113 @@
-> 本文档用于协助用户DEBUG Linkis的某个服务
+## 一、前言
+&nbsp;&nbsp;&nbsp;&nbsp;Linkis的每个微服务都支持调试的，大部分服务都支持本地调试，部分服务只支持远程调试。
 
-## 1. DEBUG 某个 EngineConn 服务
+1. 支持本地调试的服务
+- Eureka：设置的调试Main class是`com.webank.wedatasphere.linkis.eureka.SpringCloudEurekaApplication`
+- 其它Linkis微服务的Main class都是：`com.webank.wedatasphere.linkis.DataWorkCloudApplication`
 
-**什么是 EngineConn 服务？**
+2. 只支持远程调试的服务：
+EngineConnManager服务以及由ECM启动的Engine服务都只支持远程调试。
 
-EngineConn 服务是指由 EngineConnManager 启动的，用于执行用户Job请求的服务。
+## 二、本地调试服务步骤
+&nbsp;&nbsp;&nbsp;&nbsp;Linkis和DSS的服务都依赖Eureka，所以需要首先启动Eureka服务，Eureka服务也可以用您已经启动的Eureka。Eureka启动后就可以启动其他服务了。
 
-这些服务由于是由 EngineConnManager 自动启动，所以用户一般无法设置远程DEBUG的参数。
+### 2.1 Eureka服务启动
+1. 如果不想默认的20303端口可以修改端口配置：
+```yml
+文件路径：\linkis\linkis-spring-cloud-services\linkis-service-discovery\linkis-eureka\src\main\resources\application-eureka.yml
+修改端口：
+server:
+  port: 8080 ##启动的端口
+```
+2. 接着在Idea中新增调试配置
+可以通过点击Run或者点击下图的Add Configuration
+![01](../Images/Tuning_and_Troubleshooting/debug-01.png)
+3. 然后点击新增Application并修改信息
+首先设置调试的名字：比如Eureka
+接着设置Main class：
+`com.webank.wedatasphere.linkis.eureka.SpringCloudEurekaApplication`
+最后设置该服务的Class Path,对于Eureka的classPath模块是linkis-eureka
+![02](../Images/Tuning_and_Troubleshooting/debug-02.png)
+4. 接着可以点击Debug按钮启动Eureka服务了，并可以通过：[http://localhost:8080/](http://localhost:8080/)访问Eureka页面
+![03](../Images/Tuning_and_Troubleshooting/debug-03.png)
 
-在测试环境下，用户可以通过设置成测试模式，来开启某个 EngineConn 的远程DEBUG。
-
-#### 1. 进入 ${LINKIS_HOME}/conf目录，执行命令：
-
-```bash
-    
-    vim linkis.properties
-    
+### 2.2 其他服务
+1. 需要修改对应服务的Eureka配置，需要修改application.yml文件
+```
+gateway:linkis\linkis-spring-cloud-services\linkis-service-gateway\linkis-spring-cloud-gateway\src\main\resources\application.yml
+publicservice:linkis\linkis-public-enhancements\linkis-publicservice\conf\application.yml
+metadata:linkis\linkis-public-enhancements\linkis-datasource\linkis-metadata\conf\application.yml
+entrance:linkis\linkis-computation-governance\linkis-entrance\src\main\resources\application.yml
+resourcemanager:linkis\linkis-computation-governance\linkis-manager\linkis-application-manager\src\main\resources\application.yml
+context service:linkis\linkis-public-enhancements\linkis-context-service\linkis-cs-server\conf\application.yml
+bml server:linkis\linkis-public-enhancements\linkis-bml\linkis-bml-server\conf\application.yml
+engine conn:linkis\linkis-computation-governance\linkis-engineconn-manager\linkis-engineconn-manager-server\src\main\resources\application.yml      
+```
+修改对应的Eureka地址为已经启动的Eureka服务：
 ```
 
-   将测试模式打开，参数如下：
-
-```properties
-                 
-    wds.linkis.test.mode=true   # 打开测试模式
-                 
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8080/eureka/
 ```
+2. 修改linkis和DSS相关的配置,配置文件在linkis.properties，修改对应的配置。
 
-#### 2. 给 Linkis 提交任务，让 Linkis 启动新的 EngineConn 来执行用户的任务请求
-
-#### 3. 进入 ${LINKIS_HOME}/logs，打开 linkis-engineconnManager.log，查看最新的 EngineConn 启动脚本日志，如下例子：
-
+3. 接着新增调试服务
+Main Class都统一设置为：`com.webank.wedatasphere.linkis.DataWorkCloudApplication` 
+服务的Class Path为对应的模块：
 ```
-    Running ${LINKIS_HOME}/bin/rootScript.sh enjoyyin /nemo/jdk1.8.0_141/jre/bin/java -Xmx2g -Xms2g -server -XX:+UseG1GC -XX:MaxPermSize=250m -XX:PermSize=128m  -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintGCDateStamps -Dwds.linkis.configuration=linkis-engine.properties -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=10092 -Djava.library.path=/appcom/Install/hadoop/lib/native -cp /appcom/Install/Linkis/Linkis-ujes-hive-enginemanager/lib/dataworkcloud-HiveEngine-0.6.0.jar:/appcom/Install/Linkis/Linkis-ujes-hive-enginemanager/conf:/appcom/Install/Linkis/Linkis-ujes-hive-enginemanager/lib/*:/appcom/config/hadoop-config:/appcom/config/hbase-config:/appcom/config/spark-config:/appcom/config/hive-config com.webank.bdp.dataworkcloud.engine.DataWorkCloudEngineApplication --dwc-conf _req_entrance_instance=shellEntrance,bdpdwc010001:10087 --dwc-conf bdp.dwc.tmpfile.clean.time=10:00 --dwc-conf ticketId=38a41dc2-95bb-48db-8921-b48bbfa2ab64 --dwc-conf dwc.application.instance=bdpdwc010001:25410 --dwc-conf creator=IDE --dwc-conf bdp.dwc.preheating.time=9:00 --dwc-conf bdp.dwc.yarnqueue=q01 --dwc-conf bdp.dwc.instance=10 --dwc-conf dwc.application.name=shellEngineManager --dwc-conf user=johnnwang --spring-conf eureka.client.serviceUrl.defaultZone=http://10.255.0.70:20303/eureka/ --spring-conf logging.config=classpath:log4j2-engine.xml --spring-conf spring.profiles.active=engine --spring-conf server.port=36546 --spring-conf spring.application.name=HiveEngine
+gateway:linkis-spring-cloud-gateway
+publicservice:linkis-publicservice
+metadata:linkis-metadata
+entrance:linkis-entrance
+linkis manager:linkis-application-manager
+context service:linkis-cs-server
+bml server:linkis-bml-server
+engine conn:linkis-engineconn-manager-server
 ```
+并勾选provide：
 
+![06](../Images/Tuning_and_Troubleshooting/debug-06.png)
 
-   上面的日志出现了远程调试端口，即10092：
+4. 接着启动服务，可以看到服务在Eureka页面进行注册：
 
+![05](../Images/Tuning_and_Troubleshooting/debug-05.png)
+
+5.需要注意的两个服务：PublicService和MetaData
+因为这两个服务的配置文件在conf目录，需要设置conf目录为resource，如下图
+![04](../Images/Tuning_and_Troubleshooting/debug-04.png)
+令外PublicService需要在pom里面加入public-Module模块。
 ```
-    -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=10092
-       
+<dependency>
+ <groupId>com.webank.wedatasphere.linkis</groupId>
+ <artifactId>public-module</artifactId>
+ <version>${linkis.version}</version>
+</dependency>
 ```
-
-#### 4. 打开Intellij IDEA，进入Linkis工程，如下图打开DEBUG：
-
- ![DEBUG截图](https://github.com/WeBankFinTech/Linkis/blob/master/docs/zh_CN/images/ch5/DEBUG%E6%88%AA%E5%9B%BE.png)
+## 三、远程调试服务步骤
+&nbsp;&nbsp;&nbsp;&nbsp;每个服务都支持远程调试，但是需要提前打开远程调试。远程调试分为两种情况，一种是Linkis普通服务的远程调试，另一种是EngineConn的远程调试，以下分别阐述：
+1. 普通服务的远程调试：
+    a.  首先修改sbin/ext目录下的对应服务的启动脚本文件，添加调试端口：
+```
+export $SERVER_JAVA_OPTS =" -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=10092"
+```
+添加的内容为： `-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=10092` 其中端口可能冲突，可以修改为可用的端口。
+      b. 接着在idea里面新建一个远程调试，首先选择remote，然后增加服务的host和端口，接着选择调试的模块
+![07](../Images/Tuning_and_Troubleshooting/debug-07.png)
+3. 接着点击debug按钮就可以完成远程调试了
+![08](../Images/Tuning_and_Troubleshooting/debug-08.png)
+      
+2. EngineConn的远程调试：
+    a. 在EngineConn对应的linkis-engineconn.properties文件中，添加以下配置项
+```
+wds.linkis.engineconn.debug.enable=true
+```
+该配置项会在EngineConn启动时，随机分配一个debug端口。 
+      b. 在EngineConn的日志第一行，会打印出实际分配的端口。
+```
+      Listening for transport dt_socket at address: 26072
+```
+      
+   c. 在idea里新建一个远程调试，在前面已经介绍过步骤，在此不再赘述。
  
- 请注意：
- 
-  - Host为Engine实际启动的IP
-  - Port为步骤3获取的DEBUG端口
-  - Use module classpath需为实际需要DEBUG的模块
-  
-#### 5. 打断点，开始DEBUG。
-
-## 2. DEBUG非Engine服务
-
- DEBUG非Engine服务比较简单，用户进入某个Linkis服务，修改start-*.sh脚本，加上远程调试即可。
-
- **例如我们想调试database服务：**
- 
-#### 1. 进入linkis-database/bin目录，执行命令：
-
-
-```bash
-
-    vim start-database.sh
-        
-```
-  先加上如下一行shell脚本：
-    
-```bash
-
-    export DEBUG_OPTS="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=10092"
-    
-```
-
-  请注意，这里的address为远程调试端口，且必须是没有被占用的端口
- 
-#### 2. 接下来修改Java启动命令，加上远程调试的命令$DEBUG_OPTS，如下：
-
-```bash
-    
-    nohup java $DWS_ENGINE_MANAGER_JAVA_OPTS $DEBUG_OPTS -cp $HOME/conf:$HOME/lib/* com.webank.wedatasphere.linkis.DataWorkCloudApplication 2>&1 > $DWS_ENGINE_MANAGER_LOG_PATH/linkis-database.out &
-    
-```
-
-#### 3. 重启database服务
- 
-#### 4. 打开Intellij IDEA，进入Linkis工程，如下图打开DEBUG：
- 
-  ![DEBUG截图](https://github.com/WeBankFinTech/Linkis/blob/master/docs/zh_CN/images/ch5/DEBUG%E6%88%AA%E5%9B%BE.png)
-  
-  请注意：
-  
-   - Host为Engine实际启动的IP
-   - Port为步骤3获取的DEBUG端口
-   - Use module classpath需为实际需要DEBUG的模块
-   
-#### 5. 打断点，开始DEBUG。

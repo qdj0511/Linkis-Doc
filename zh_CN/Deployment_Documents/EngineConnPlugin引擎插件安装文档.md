@@ -1,4 +1,4 @@
-> 本文主要介绍Linkis引擎插件的单独，主要从编译、安装等方面进行介绍
+> 本文主要介绍Linkis引擎插件的使用，主要从编译、安装等方面进行介绍
 
 ## 1. 引擎插件的编译打包
 &nbsp;&nbsp;&nbsp;&nbsp;在linkis1.0以后引擎是由引擎管理服务进行管理的，引擎插件支持实时生效。为了方便引擎管理服务能够通过标签加载到对应的引擎插件，需要按照如下目录结构进行打包(已hive为例)：
@@ -68,3 +68,4 @@ cd /Linkis1.0.0/sbin
 sh linkis-daemon.sh restart linkis-engine-plugin-server
 ```
 
+3. 检查引擎是否刷新成功：如果在刷新过程中遇到问题，需要确认是否刷新成功，则可以查看数据库中的linkis_engine_conn_plugin_bml_resources这张表的last_update_time是否为触发刷新的时间。

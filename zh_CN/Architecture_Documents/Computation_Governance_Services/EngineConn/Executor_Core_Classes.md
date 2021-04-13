@@ -1,4 +1,4 @@
-## Executor类图
+## Executor核心类图
 
 ![Excutor_Core_Class](../../../Images/Architecture/EngineConn/Executor_Core_Class.png)
 

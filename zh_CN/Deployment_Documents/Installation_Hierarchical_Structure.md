@@ -72,5 +72,5 @@ Linkis1.0简化后的目录结构如下，其中蓝色标注地为用户安装�
 └── sbin 微服务启停脚本目录  
      ├── ext ──各个微服务的启停脚本目录  
      ├── **linkis-daemon.sh** ── **快捷启停、重启单个微服务脚本**  
-     ├── **linkis-start-all.sh** ── **一键启动全部微服务脚本**  
-     └── **linkis-stop-all.sh** ── **一键停止全部微服务脚本**
+ &ensp;  ├── **linkis-start-all.sh** ── **一键启动全部微服务脚本**  
+ &ensp;&ensp; └── **linkis-stop-all.sh** ── **一键停止全部微服务脚本**

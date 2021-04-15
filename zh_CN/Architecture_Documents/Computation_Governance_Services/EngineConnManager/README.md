@@ -33,7 +33,7 @@ ECM0.X的架构图，如下图：
 
 ![](Images/ECM0.X的架构图.png)
 
-Linkis1.0.0之后，由于ResourceRequestor、EngineCreator已经交给了EnginePlugin模块，ECM1.0.0只负责解析由Linkis
+Linkis1.0.0之后，由于ResourceRequestor、EngineCreator已经交给了EngineConnPlugin模块，ECM1.0.0只负责解析由Linkis
 Manager传递过来的LaunchEngineRequest，并通过EngineLaunch启动一个新的引擎。
 
 ![](Images/ECM1.0的架构图.png)

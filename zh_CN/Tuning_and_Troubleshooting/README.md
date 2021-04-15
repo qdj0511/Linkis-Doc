@@ -31,11 +31,10 @@
 
 
 
-### 三、社区文档《Q\&A问题总结》
+### 三、《Q\&A问题总结》
 
-在社区Linkis首页的wiki目录下，包含了Linkis安装部署相关文档和架构设计文档，也包含了安装部署过程中常见问题汇总以及解决方案，包含了一些出现频率较高的热点问题。
+在Linkis文档中，专门整理出一篇包含安装部署过程中常见问题汇总以及解决方案的文档《 [Linkis 1.0常见问题](https://github.com/WeBankFinTech/Linkis-Doc/blob/master/zh_CN/Tuning_and_Troubleshooting/Q&A.md) 》
 
-![](../Images/Tunning_and_Troubleshooting/Q&A.png)
 
 
 

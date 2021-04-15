@@ -19,18 +19,12 @@
 
 ## 模块异常规范
 
-- Linkis架构错误码以10000开始
-
-- Resource Manager错误码以11000开始
-
-- Entrance错误码以20000开始
-
-- Linkis Manager错误码以21000开始
-
-- 引擎管理器错误码以30000开始
-
-- 引擎错误码以40000开始
-
-- Storage错误码以50000开始
-
-- BML错误码以60000开始
+linkis-commons:10000-11000
+linkis-computattion-governace:11000-12000
+linkis-engineconn-plugins:12000-13000
+linkis-orchestrator:13000-14000
+linkis-public-enghancements:14000-15000
+linkis-spring-cloud-service:15100-15500
+linkis-extensions:15500-16000
+linkis-tuning:16100-16200
+linkis-user-control:16200-16300

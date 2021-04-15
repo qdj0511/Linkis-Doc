@@ -56,7 +56,7 @@ linkis_configuration_config_value： 插入引擎需要展示的配置
 如果是已经存在的引擎，新增版本，则可以修改linkis_configuration_dml.sql文件下的对应引擎的版本进行执行
 
 ### 2.3 引擎刷新
-1. 引擎是支持实时刷新，引擎放置到对应目录后，Linkis1.0提供不关服热加载引擎的方法，通过restful接口请求即可，请求接口为[http://ip:port/api/rest_j/v1/rpc/receiveAndReply](http://ip:port/api/rest_j/v1/rpc/receiveAndReply)，请求方式为POST，请求Body为{“method”:”/enginePlugin/engineConn/refreshAll”}。
+1. 引擎是支持实时刷新，引擎放置到对应目录后，Linkis1.0提供不关服热加载引擎的方法，通过restful接口向linkis-engineconn-plugin-server服务发送请求即可，即服务的实际部署的ip+port，请求接口为[http://ip:port/api/rest_j/v1/rpc/receiveAndReply](http://ip:port/api/rest_j/v1/rpc/receiveAndReply)，请求方式为POST，请求Body为{“method”:”/enginePlugin/engineConn/refreshAll”}。
 2. 重启刷新：通过重启也可以强制刷新引擎目录
 ```
 ### cd到sbin目录下，重启linkis-engineconn-plugin-server

@@ -26,8 +26,7 @@
 
 ### 1.4 文档改进
 
-Linkis 用户手册文档在 docs/ 目录下，我们使用了 jekyll 作为 Linkis 的文档服务，可以编辑目
-录里的 Markdown 文件来对文档做改进。
+Linkis 用户手册文档维护再github的Linkis-Doc项目中，可以编辑项目里的 Markdown 文件，通过提pr的方式来对文档做改进。
 
 ## 二、贡献流程
 
@@ -67,10 +66,9 @@ variables —> IDE缓存的系统环境变量。
 1. 脚本
 ```
 ```
-├── bin # 脚本目录
+├── assembly-package/bin # 脚本目录
  ├── install.sh # 一键部署脚本
  ├── checkEnv.sh # 环境检查脚本
- ├── checkServices.sh # 微服务检查脚本
  └── common.sh # 通用脚本函数
 ```
 ```
@@ -88,9 +86,8 @@ variables —> IDE缓存的系统环境变量。
 2. 配置
 ```
 ```
-├── config # 用户配置目录
+├── assembly-package/config # 用户配置目录
  ├── linkis-env.sh # 一键部署的配置变量设置
- ├── linkis.properties # 一键部署的通用配置文件
  ├── db.sh # 一键部署的数据库配置
 ```
 ```
@@ -116,7 +113,7 @@ db/linkis_*.sql。
 ```
 **2.2.1.4** 配置文件
 
-修改/appcom/Install/LinkisInstall/conf目录下各微服务对应的子目录下的 application.yml 、linkis-server.properties等文件，配置相关属性。
+修改conf目录下的application-linkis.yml文件，以及各微服务名对应的properties文件，配置相关属性。
 
 **2.2.1.5** 打包
 
@@ -131,8 +128,7 @@ db/linkis_*.sql。
 
 ```
 无论是 Bug 修复，还是新功能开发，请将 PR 提交到 dev-1.0.0 分支。
-PR 和提交名称遵循 <type>(<scope>): <subject> 原则，详情可以参考阮一峰的 Commit
-message 和 Change log 编写指南 这篇文章。
+PR 和提交名称遵循 <type>(<scope>): <subject> 原则，详情可以参考阮一峰的[Commitmessage 和 Change log 编写指南](http://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html) 这篇文章。
 如果 PR 中包含新功能，理应将文档更新包含在本次 PR 中。
 如果本次 PR 尚未准备好合并，请在名称头部加上 [WIP] 前缀（WIP = work-in-
 progress）。

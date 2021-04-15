@@ -1,19 +1,19 @@
 ResourceManager（简称RM），是Linkis的计算资源管理模块，所有的EngineConn（简称EC）、EngineConnManager（简称ECM），甚至包括Yarn在内的外部资源，都由RM负责统筹管理。RM能够基于用户、ECM或其它通过复杂标签定义的粒度对资源进行管控。
 
 ### RM在Linkis中的作用
-![01](../../../../Images/Architecture/rm-01.png)
-![02](../../../../Images/Architecture/rm-02.png)
+![01](../../../Images/Architecture/rm-01.png)
+![02](../../../Images/Architecture/rm-02.png)
 RM作为Linkis
 Manager的一部分，主要作用为：维护ECM上报的可用资源信息，处理ECM提出的资源申请，记录成功申请后，EC在生命周期内实时上报的实际资源使用信息，并提供查询当前资源使用情况的相关接口。
 
 Linkis中，与RM产生交互的其它服务主要有：
 
 1.  引擎管理器，简称ECM：处理启动引擎连接器请求的微服务。ECM作为资源的提供者，负责向RM注册资源(register)和下线资源(unregister)。同时，ECM作为引擎的管理者，负责代替准备启动的新引擎连接器向RM申请资源。每一个ECM实例，均在RM中有一条对应的资源记录，包含它提供的总资源、保护资源等信息，并动态更新已使用资源。
-![03](../../../../Images/Architecture/rm-03.png)
+![03](../../../Images/Architecture/rm-03.png)
 2.  引擎连接器，简称EC，是用户作业的实际执行单元。同时，EC作为资源的实际使用者，负责向RM上报实际使用资源。每一个EC，均在RM中有一条对应的资源记录：在启动过程中，体现为锁定资源；在运行过程中，体现为已使用资源；在被结束之后，该资源记录随之被删除。
-![04](../../../../Images/Architecture/rm-04.png)
+![04](../../../Images/Architecture/rm-04.png)
 ### 资源的类型与格式
-![05](../../../../Images/Architecture/rm-05.png)
+![05](../../../Images/Architecture/rm-05.png)
 如上图所示，所有的资源类均实现一个顶层的Resource接口，该接口定义了所有资源类均需要支持的计算和比较的方法，并进行相应的数学运算符的重载，使得资源之间能够像数字一样直接被计算和比较。
 
 | 运算符 | 对应方法    | 运算符 | 对应方法    |
@@ -61,7 +61,6 @@ RM中的可用资源，主要有两个来源：ECM上报的可用资源，以及
 
 RM通过RPC消息，以组合标签为查询条件，向Configuration模块查询资源信息，并转换成Resource对象参与后续的比较和记录。
 
-（补充RM通过MessageService和ECM，通过RPC与Configuration交互的图）
 
 ### 资源使用管理
 
@@ -133,7 +132,7 @@ RM通过RPC消息，以组合标签为查询条件，向Configuration模块查�
 2.  将集群抽象成一个或多个标签，并在外部资源管理模块中维护每个集群标签对应的环境信息，实现动态的对接。
 
 3.  抽象出通用的外部资源管理模块，如需接入新的外部资源类型，只要实现固定的接口，即可将不同类型的资源信息转换为RM中的Resource实体，实现统一管理。
-![06](../../../../Images/Architecture/rm-06.png)
+![06](../../../Images/Architecture/rm-06.png)
 RM的其它模块，通过ExternalResourceService提供的接口来进行外部资源信息的获取。
 
 而ExternalResourceService通过资源类型和标签来获取外部资源的信息：

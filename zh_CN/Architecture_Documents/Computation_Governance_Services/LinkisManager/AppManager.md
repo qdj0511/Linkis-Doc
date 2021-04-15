@@ -23,6 +23,7 @@
 
 ## 架构说明：
 AppManager主要包含了引擎服务和EM 服务：
+
 引擎创建：专门负责LinkisManager服务的新建引擎功能，引擎启动模块完全负责一个新引擎的创建，包括获取ECM标签集合、资源申请、获得引擎启动命令，通知ECM新建引擎，更新引擎列表等。
 CreateEngienRequest->RPC/Rest -> MasterEventHandler ->CreateEngineService ->
 ->LabelContext/EnginePlugin/RMResourcevice->（RcycleEngineService）EngineNodeManager->EMNodeManager->sender.ask(EngineLaunchRequest)->EngineManager服务->EngineNodeManager->EngineLocker->Engine->EngineNodeManager->EngineFactory=&gt;EngineService=&gt;ServerInstance

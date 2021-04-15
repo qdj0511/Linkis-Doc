@@ -1,14 +1,6 @@
-
-## 背景
-
 LinkisManager作为Linkis的一个独立微服务，对外提供了AppManager（应用管理）、ResourceManager（资源管理）、LabelManager（标签管理）的能力，能够支持多活部署，具备高可用、易扩展的特性。
 
-## 架构图
-
-![](../../../Images/Architecture/LinkisManager-01.png)
-## 架构说明
-
-### 应用管理模块
+### 应用管理模块-AppManager
 
 -   新增一个AppManager模块，专门负责引擎的调度管理。
 
@@ -16,7 +8,7 @@ LinkisManager作为Linkis的一个独立微服务，对外提供了AppManager（
 
 -   ECMNode是EngineConnManager在LinkisManager中的对应对象，专门负责ECM在LinkisManager的处理，相当于一个ECM的远程句柄。
 
-### 标签管理模块
+### 标签管理模块-LabelManager
 
 标签管理模块，是LinkisManager非常核心的一个模块，其主要功能如下：
 
@@ -28,7 +20,7 @@ LinkisManager作为Linkis的一个独立微服务，对外提供了AppManager（
 
 -   提供标签解析模块，能将用户的请求，解析成一堆标签。
 
-### 资源管理模块
+### 资源管理模块-ResourceManager
 
 -   RM1.0.0，在对用户资源、EM资源方面，已经能够做到很好的管理。
 

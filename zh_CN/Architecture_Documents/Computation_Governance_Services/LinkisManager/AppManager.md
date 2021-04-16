@@ -19,10 +19,14 @@
 ![](../../../Images/Architecture/AppManager-02.png)
 
 
-从上面的引擎生命周期流程图可知，Entrance已经不在做Engine的管理工作，engine的启动和管理都由AM控制，那么在这一过程中。Entrance需要去掉部分代码包括：
+从上面的引擎生命周期流程图可知，Entrance已经不在做Engine的管理工作，engine的启动和管理都由AM控制。
 
 ## 架构说明：
+
 AppManager主要包含了引擎服务和EM 服务：
+引擎服务包含了所有和引擎EngineConn相关的操作，如引擎创建、引擎复用、引擎切换、引擎回收、引擎停止、引擎销毁等。
+EM服务负责所有EngineConnManager的信息管理，可以在线上对ECM进行服务管理，包括标签修改，暂停ECM服务，获取ECM实例信息，获取ECM运行的引擎信息，kill掉ECM操作，还可以根据EM Node的信息查询所有的EngineNode,也支持按用户查找，保存了EM Node的负载信息、节点健康信息、资源使用信息等。
+新的EngineConnManager和EngineConn都支持标签管理，引擎的类型也增加了离线、流式、交互式支持。
 
 引擎创建：专门负责LinkisManager服务的新建引擎功能，引擎启动模块完全负责一个新引擎的创建，包括获取ECM标签集合、资源申请、获得引擎启动命令，通知ECM新建引擎，更新引擎列表等。
 CreateEngienRequest->RPC/Rest -> MasterEventHandler ->CreateEngineService ->
@@ -38,4 +42,4 @@ SwitchEngienRequest->RPC/Rest -> MasterEventHandler ->SwitchEngineService ->Labe
 
 引擎管理器：引擎管理负责管理所有引擎的基本信息、元数据信息
 
-ECM管理：负责所有EngineManager的信息管理，可以在线上对ECM进行服务管理，包括标签修改，暂停ECM服务，获取ECM实例信息，获取ECM运行的引擎信息，kill掉ECM操作。
+

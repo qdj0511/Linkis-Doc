@@ -2,8 +2,17 @@
 &nbsp;&nbsp;&nbsp;&nbsp;Linkis的每个微服务都支持调试的，大部分服务都支持本地调试，部分服务只支持远程调试。
 
 1. 支持本地调试的服务
-- Eureka：设置的调试Main class是`com.webank.wedatasphere.linkis.eureka.SpringCloudEurekaApplication`
-- 其它Linkis微服务的Main class都是：`com.webank.wedatasphere.linkis.DataWorkCloudApplication`
+- linkis-mg-eureka：设置的调试Main class是`com.webank.wedatasphere.linkis.eureka.SpringCloudEurekaApplication`
+- 其它Linkis微服务分别有自己的Main class，分别如下
+    linkis-cg-manager: `com.webank.wedatasphere.linkis.manager.am.LinkisManagerApplication`
+    linkis-ps-bml: `com.webank.wedatasphere.linkis.bml.LinkisBMLApplication`
+    linkis-ps-cs: `com.webank.wedatasphere.linkis.cs.server.LinkisCSApplication`
+    linkis-cg-engineconnmanager: `com.webank.wedatasphere.linkis.ecm.server.LinkisECMApplication`
+    linkis-cg-engineplugin: `com.webank.wedatasphere.linkis.engineplugin.server.LinkisEngineConnPluginServer`
+    linkis-cg-entrance: `com.webank.wedatasphere.linkis.entrance.LinkisEntranceApplication`
+    linkis-ps-publicservice: `com.webank.wedatasphere.linkis.jobhistory.LinkisPublicServiceAppp`
+    linkis-ps-datasource: `com.webank.wedatasphere.linkis.metadata.LinkisDataSourceApplication`
+    linkis-mg-gateway: `com.webank.wedatasphere.linkis.gateway.springcloud.LinkisGatewayApplication`
 
 2. 只支持远程调试的服务：
 EngineConnManager服务以及由ECM启动的Engine服务都只支持远程调试。
@@ -14,7 +23,7 @@ EngineConnManager服务以及由ECM启动的Engine服务都只支持远程调试
 ### 2.1 Eureka服务启动
 1. 如果不想默认的20303端口可以修改端口配置：
 ```yml
-文件路径：\linkis\linkis-spring-cloud-services\linkis-service-discovery\linkis-eureka\src\main\resources\application-eureka.yml
+文件路径：conf/application-eureka.yml
 修改端口：
 server:
   port: 8080 ##启动的端口
@@ -34,14 +43,7 @@ server:
 ### 2.2 其他服务
 1. 需要修改对应服务的Eureka配置，需要修改application.yml文件
 ```
-gateway:linkis\linkis-spring-cloud-services\linkis-service-gateway\linkis-spring-cloud-gateway\src\main\resources\application.yml
-publicservice:linkis\linkis-public-enhancements\linkis-publicservice\conf\application.yml
-metadata:linkis\linkis-public-enhancements\linkis-datasource\linkis-metadata\conf\application.yml
-entrance:linkis\linkis-computation-governance\linkis-entrance\src\main\resources\application.yml
-resourcemanager:linkis\linkis-computation-governance\linkis-manager\linkis-application-manager\src\main\resources\application.yml
-context service:linkis\linkis-public-enhancements\linkis-context-service\linkis-cs-server\conf\application.yml
-bml server:linkis\linkis-public-enhancements\linkis-bml\linkis-bml-server\conf\application.yml
-engine conn:linkis\linkis-computation-governance\linkis-engineconn-manager\linkis-engineconn-manager-server\src\main\resources\application.yml      
+conf/application-linkis.yml    
 ```
 修改对应的Eureka地址为已经启动的Eureka服务：
 ```
@@ -51,20 +53,21 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:8080/eureka/
 ```
-2. 修改linkis和DSS相关的配置,配置文件在linkis.properties，修改对应的配置。
+2. 修改linkis相关的配置,通用配置文件在conf/linkis.properties，各模块对应的配置在conf目录下以模块名称开头的properties文件中。
 
 3. 接着新增调试服务
-Main Class都统一设置为：`com.webank.wedatasphere.linkis.DataWorkCloudApplication` 
+Main Class都统一设置为各模块自己的Main Class，已在前言中列出。
 服务的Class Path为对应的模块：
 ```
-gateway:linkis-spring-cloud-gateway
-publicservice:linkis-publicservice
-metadata:linkis-metadata
-entrance:linkis-entrance
-linkis manager:linkis-application-manager
-context service:linkis-cs-server
-bml server:linkis-bml-server
-engine conn:linkis-engineconn-manager-server
+    linkis-cg-manager: linkis-application-manager
+    linkis-ps-bml: linkis-bml
+    linkis-ps-cs: `com.webank.wedatasphere.linkis.cs.server.LinkisCSApplication`
+    linkis-cg-engineconnmanager: linkis-cs-server
+    linkis-cg-engineplugin: linkis-engineconn-plugin-server
+    linkis-cg-entrance: linkis-entrance
+    linkis-ps-publicservice: linkis-jobhistory
+    linkis-ps-datasource: linkis-metadata
+    linkis-mg-gateway: linkis-spring-cloud-gateway
 ```
 并勾选provide：
 
@@ -74,10 +77,7 @@ engine conn:linkis-engineconn-manager-server
 
 ![05](../Images/Tuning_and_Troubleshooting/debug-05.png)
 
-5.需要注意的两个服务：PublicService和MetaData
-因为这两个服务的配置文件在conf目录，需要设置conf目录为resource，如下图
-![04](../Images/Tuning_and_Troubleshooting/debug-04.png)
-令外PublicService需要在pom里面加入public-Module模块。
+令外linkis-ps-publicservice需要在pom里面加入public-Module模块。
 ```
 <dependency>
  <groupId>com.webank.wedatasphere.linkis</groupId>

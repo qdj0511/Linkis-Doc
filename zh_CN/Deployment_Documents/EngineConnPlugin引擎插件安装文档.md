@@ -1,4 +1,4 @@
-> 本文主要介绍Linkis引擎插件的单独，主要从编译、安装等方面进行介绍
+> 本文主要介绍Linkis引擎插件的使用，主要从编译、安装等方面进行介绍
 
 ## 1. 引擎插件的编译打包
 &nbsp;&nbsp;&nbsp;&nbsp;在linkis1.0以后引擎是由引擎管理服务进行管理的，引擎插件支持实时生效。为了方便引擎管理服务能够通过标签加载到对应的引擎插件，需要按照如下目录结构进行打包(已hive为例)：
@@ -56,7 +56,7 @@ linkis_configuration_config_value： 插入引擎需要展示的配置
 如果是已经存在的引擎，新增版本，则可以修改linkis_configuration_dml.sql文件下的对应引擎的版本进行执行
 
 ### 2.3 引擎刷新
-1. 引擎是支持实时刷新，引擎放置到对应目录后，Linkis1.0提供不关服热加载引擎的方法，通过restful接口请求即可，请求接口为[http://ip:port/api/rest_j/v1/rpc/receiveAndReply](http://ip:port/api/rest_j/v1/rpc/receiveAndReply)，请求方式为POST，请求Body为{“method”:”/enginePlugin/engineConn/refreshAll”}。
+1. 引擎是支持实时刷新，引擎放置到对应目录后，Linkis1.0提供不关服热加载引擎的方法，通过restful接口向linkis-engineconn-plugin-server服务发送请求即可，即服务的实际部署的ip+port，请求接口为[http://ip:port/api/rest_j/v1/rpc/receiveAndReply](http://ip:port/api/rest_j/v1/rpc/receiveAndReply)，请求方式为POST，请求Body为{“method”:”/enginePlugin/engineConn/refreshAll”}。
 2. 重启刷新：通过重启也可以强制刷新引擎目录
 ```
 ### cd到sbin目录下，重启linkis-engineconn-plugin-server
@@ -68,3 +68,4 @@ cd /Linkis1.0.0/sbin
 sh linkis-daemon.sh restart linkis-engine-plugin-server
 ```
 
+3. 检查引擎是否刷新成功：如果在刷新过程中遇到问题，需要确认是否刷新成功，则可以查看数据库中的linkis_engine_conn_plugin_bml_resources这张表的last_update_time是否为触发刷新的时间。

@@ -68,12 +68,6 @@ Linkis在前后端进行交互的时候，自定义了一套自己的接口规�
 				}
 			}
 		},
-		"labels": [
-			{
-				"labelkey": "k",
-				"labelvalue": "v"
-			}
-		]
 		"executeApplicationName":"spark",
 		"executionCode":"show tables",
 		"runType":"sql",
@@ -112,7 +106,50 @@ Linkis在前后端进行交互的时候，自定义了一套自己的接口规�
 - execID是用户任务提交到UJES之后，为该任务生成的唯一标识的执行ID，为String类型，这个ID只在任务运行时有用，类似PID的概念。ExecID的设计为(requestApplicationName长度)(executeAppName长度1)(Instance长度2)${requestApplicationName}${executeApplicationName}${entranceInstance信息ip+port}${requestApplicationName}_${umUser}_${index}
 - taskID 是表示用户提交task的唯一ID，这个ID由数据库自增生成，为Long 类型
 
-**3).任务状态、日志、进度主动推送**<br>
+
+**3).带标签的任务提交接口**<br>
+
+为了兼容原接口，在原有的接口基础上，提供了一个submit接口，用户可以通过该接口提交任务，并附带标签，接口大部分定义和之前一样，只是在param参数中新增一个labels字段。请求执行任务submit是将用户的作业提交到Linkis进行执行的接口
+- 接口 `/api/rest_j/entrance/execute`
+- 提交方式 `POST`<br>
+- 请求JSON示例
+```json
+{
+ 	"method":"/api/rest_j/v1/entrance/execute",
+ 	"data":{
+		"params": {
+			"variable":{
+				"k1":"v1"
+			},
+			"configuration":{
+				"special":{
+					"k2":"v2"
+				},
+				"runtime":{
+					"k3":"v3"
+				},
+				"startup":{
+					"k4":"v4"
+				}
+			},
+			"labels":{
+				"k1":"v1",
+				"k2":"v2",
+				"k3":"v3"
+			}
+		},
+		"executeApplicationName":"spark",
+		"executionCode":"show tables",
+		"runType":"sql",
+		"source":{
+			"scriptPath": "/home/Linkis/Linkis.sql"
+		},
+    "websocketTag":"37fcbd8b762d465a0c870684a0261c6e"
+	}
+}
+```
+
+**4).任务状态、日志、进度主动推送**<br>
 
 提交执行之后，任务的状态、日志、进度等信息都会由服务器主动推送，用websocket方式去主动进行请求。
 请求的接口和下文中的HTTP是保持一致的，唯一不一样的是，websocket的请求shema是ws://,而HTTP的请求schema是http://。

@@ -8,11 +8,11 @@
 
 ```json
 {
-    "executeApplicationName": "hive"，--引擎类型
-    "requestApplicationName": "dss",--客户端服务类型
-    "executionCode": "show tables"，
-    "params": {"variable": {}, "configuration": {}}，
-    "runType":  "hql"，---运行的脚本类型
+    "executeApplicationName": "hive", //引擎类型
+    "requestApplicationName": "dss", //客户端服务类型
+    "executionCode": "show tables",
+    "params": {"variable": {}, "configuration": {}},
+    "runType": "hql", //运行的脚本类型
    "source": {"scriptPath":"file:///tmp/hadoop/1.hql"}
 }
 ```
@@ -23,9 +23,9 @@
 
 ```json
 {
-    "executionContent": ｛"code": "show tables", "runType":  "sql"｝，
-    "params": {"variable": {}, "configuration": {}}，
-    "source":  {"scriptPath": "file:///mnt/bdp/hadoop/1.hql"}，
+    "executionContent": {"code": "show tables", "runType":  "sql"},
+    "params": {"variable": {}, "configuration": {}},
+    "source":  {"scriptPath": "file:///mnt/bdp/hadoop/1.hql"},
     "labels": {
         "engineType": "spark-2.4.3",
         "userCreator": "hadoop-IDE"

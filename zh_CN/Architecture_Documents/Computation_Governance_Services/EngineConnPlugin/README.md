@@ -44,9 +44,6 @@ EngineConn-Plugin-Cache 引擎插件缓存模组
 |-----------------------------|------------------------------|
 | EngineConnPluginCache       | 缓存已经加载的引擎连接器实例 |
 | RefreshPluginCacheContainer | 定时刷新缓存的引擎连接器     |
-|                             |                              |
-|                             |                              |
-|                             |                              |
 
 EngineConn-Plugin-Core:引擎连接器插件核心模组
 ---------------------------------------------

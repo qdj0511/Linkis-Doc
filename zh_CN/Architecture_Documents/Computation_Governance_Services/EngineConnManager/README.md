@@ -1,80 +1,49 @@
 EngineConnManager架构设计
 -------------------------
 
-Linkis1.0.0的EngineConnManager（简称ECM），主要聚焦于以下3个能力：
+EngineConnManager（ECM）：EngineConn的管理器，提供引擎的生命周期管理，同时向RM汇报负载信息和自身的健康状况。
 
-一、 和Linkis Manager的AM的交互
+### 一、ECM架构
 
-ECM服务启动的时候会去AM中注册
+![](Images/ECM架构图.png)
 
-ECM服务关闭的时候，回去AM中注销信息
+### 二、二级模块介绍
 
-定时发送心跳信息给AM
+**Linkis-engineconn-linux-launch**
 
-二、和EngineConn-Plugin-Server的交互
+引擎启动器，核心类为LinuxProcessEngineConnLauch，用于提供执行命令的指令。
 
-当创建引擎的请求进来后，ecm会将请求转发给engineConn-plugin-server，获取到
+**Linkis-engineconn-manager-core**
 
-三、和EngineConn的交互
+ECM的核心模块，包含ECM健康上报、EngineConn健康上报功能的顶层接口，定义了ECM服务的相关指标，以及构造EngineConn进程的核心方法。
 
-EngineConn启动后会发送pidcallback给ecm去更新相关的EngineConn信息
+| 核心顶层接口/类     | 核心功能                                 |
+|---------------------|------------------------------------------|
+| EngineConn          | 定义了EngineConn的属性，包含的方法和参数 |
+| EngineConnLaunch    | 定义了EngineConn的启动方法和停止方法     |
+| ECMEvent            | 定义了ECM相关事件                        |
+| ECMEventListener    | 定义了ECM相关事件监听器                  |
+| ECMEventListenerBus | 定义了ECM的监听器总线                    |
+| ECMMetrics          | 定义了ECM的指标信息                      |
+| ECMHealthReport     | 定义了ECM的健康上报信息                  |
+| NodeHealthReport    | 定义了节点的健康上报信息                 |
 
-EngineConn在特殊情况下也会发送日志信息给ECM
+**Linkis-engineconn-manager-server**
 
-ECM在接收到kill请求的情况下，会尝试发送信息给EngineConn让其自杀
+ECM的服务端，定义了ECM健康信息处理服务、ECM指标信息处理服务、ECM注册服务、EngineConn启动服务、EngineConn停止服务、EngineConn回调服务等顶层接口和实现类，主要用于ECM对自己和EngineConn的生命周期管理以及健康信息上报、发送心跳等。
 
-### ECM架构
+模块中的核心Service和功能简介如下：
 
-ECM0.X，主要提供了注册、申请Engine资源、引擎管理、引擎创建的能力。
+| 核心service                     | 核心功能                                        |
+|---------------------------------|-------------------------------------------------|
+| EngineConnLaunchService         | 包含生成EngineConn和启动进程的核心方法          |
+| BmlResourceLocallizationService | 用于将BML的引擎相关资源下载并生成本地化文件目录 |
+| ECMHealthService                | 向AM定时上报自身的健康心跳                      |
+| ECMMetricsService               | 向AM定时上报自身的指标状况                      |
+| EngineConnKillSerivce           | 提供停止引擎的相关功能                          |
+| EngineConnListService           | 提供缓存和管理引擎的相关功能                    |
+| EngineConnCallBackService       | 提供回调引擎的功能                              |
 
-ECM0.X在EngineLaunch方面还不够强大，完全交由EngineCreator模块负责，且比较难支持容器化，与K8S集成则更加麻烦。
+ECM构建EngineConn启动流程：
 
-ECM0.X的架构图，如下图：
-
-![](Images/ECM0.X的架构图.png)
-
-Linkis1.0.0之后，由于ResourceRequestor、EngineCreator已经交给了EngineConnPlugin模块，ECM1.0.0只负责解析由Linkis
-Manager传递过来的LaunchEngineRequest，并通过EngineLaunch启动一个新的引擎。
-
-![](Images/ECM1.0的架构图.png)
-
-ECM1.0.0还增加了定时负载汇报、本地目录定时检测和清理的功能，所有的资源文件和用户Jar都将交由BmlResourceLocalizationService负责，整个架构变得更加的立体，EngineLaunch还预留了集成容器化和K8S的接口，方便后续的对接。
-
-### 组件说明
-
-#### MetricService
-
-主要用于统计EngineConn的指标，主要有：
-starting，running，success，failed状态EngineConn的个数
-
-#### HealthReportService
-
-主要职责：获取当前节点的cpu，内存，磁盘信息，判断当前节点是否健康，定时给AM回报心跳
-
-#### RegisterService
-
-主要职责：服务启动去AM注册，服务注销去AM注销
-
-#### CallbackService
-
-主要职责：负责EngineConn的callback请求，然后给EngineConnList中对应的EngineConn赋值
-
-#### ResourceLocalizationService
-
-主要职责：将资源下载到本地，封装ECM En对象
-
-#### LocalDirsHandleService
-
-主要职责：获取本地化资源的目录文件目录
-
-#### EngineConnListService
-
-主要职责：缓存、并管理该ECM创建的所有EngineConn
-
-#### LaunchService
-
-主要职责： 创建EngineConn 并且等待EngineConn的callback，后面将Node信息返回给AM
-
-### 创建EngineConn请求流程
-
->   ![](Images/创建EngineConn请求流程.png)
+![](Images/创建EngineConn请求流程.png)

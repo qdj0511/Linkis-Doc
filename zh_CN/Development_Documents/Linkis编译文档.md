@@ -2,13 +2,13 @@
 
 ## 目录
 
-- [1.全量编译 Linkis]()
+- [1.全量编译 Linkis](#1全量编译-linkis)
 
-- [2.编译单个模块]()
+- [2.编译单个模块](#2编译单个模块)
 
-- [3. 编译某个引擎]()
+- [3. 编译某个引擎](#3-编译某个引擎)
 
-- [4. 如何修改Linkis的依赖的Hadoop、Hive、Spark版本]()
+- [4. 如何修改Linkis的依赖的Hadoop、Hive、Spark版本](#4-如何修改linkis的依赖的hadoophivespark版本)
 
 ## 1.全量编译 Linkis
 
@@ -18,7 +18,7 @@
    
    **请注意**：官方推荐使用 Hadoop-2.7.2、Hive-1.2.1、Spark-2.4.3 和 Scala-2.11.8 对 Linkis 进行编译。
 
-   如果您想使用 Hadoop、Hive、Spark 的其他版本对 Linkis 进行编译，请参考：[如何修改Linkis的依赖的Hadoop、Hive、Spark版本]()
+   如果您想使用 Hadoop、Hive、Spark 的其他版本对 Linkis 进行编译，请参考：[如何修改Linkis的依赖的Hadoop、Hive、Spark版本](#4-如何修改linkis的依赖的hadoophivespark版本)
 
    (1) **如果您是本地第一次编译使用，必须在 Linkis 源码包根目录先执行以下命令**：
    
@@ -136,4 +136,4 @@
 
 修改其他引擎的版本与修改 Spark 版本类似，先进入相关引擎所在的目录，手动修改 pom.xml 文件的引擎版本信息即可。
 
-然后请参考 [编译某个引擎]()
+然后请参考 [编译某个引擎](#3-编译某个引擎)

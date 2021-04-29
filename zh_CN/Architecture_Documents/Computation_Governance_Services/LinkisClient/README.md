@@ -10,7 +10,7 @@
 
 #### 二级模块介绍
 
-##### · Linkis-Computation-Client
+##### Linkis-Computation-Client
 
 以SDK的形式为用户提供向Linkis提交执行任务的接口。
 
@@ -22,7 +22,7 @@
 
  
 
-##### · Linkis-Cli
+#####  Linkis-Cli
 
 以shell命令端的形式为用户提供向Linkis提交执行任务的方式。
 

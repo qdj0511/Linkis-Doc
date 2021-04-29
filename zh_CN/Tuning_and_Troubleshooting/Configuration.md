@@ -85,7 +85,7 @@ linkis-commons/linkis-module：该模块大部分参数可以参与默认值
  ("wds.linkis.server.restful.scan.packages", "")
  ("wds.linkis.server.restful.register.classes", "")
  ("wds.linkis.server.socket.service.scan.packages", BDP_SERVER_RESTFUL_SCAN_PACKAGES.getValue)
- ("wds.linkis.is.gateway", "false")
+ ("wds.linkis.is.gateway", "false") # 该模块是否为gateway
 ```
 
 linkis-commons/linkis-mybatis：

@@ -9,10 +9,10 @@
 ## 2. Scriptis使用Linkis
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果需要使用Linkis完成交互式在线分析处理的工作，并且不需要诸如工作流开发、工作流调度、数据服务等数据分析应用工具，可以单独安装[**Scriptis**](https://github.com/WeBankFinTech/Scriptis)，详细安装教程可参考其对应的安装部署文档。  
 ## 2.1. 使用Scriptis执行脚本
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;目前Scriptis支持向Linkis提交多种任务类型，包括Spark SQL、Hive SQL、Scala、PythonSpark等，为了满足数据分析的需求，Scriptis左侧，提供查看用户工作空间信息、用户数据库和表信息、用户自定义函数，以及HDFS目录，同时支持上传下载，结果集导出等功能。  
-![Scriptis使用Linkis](../Images/EngineUsage/queue-set.png)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;目前Scriptis支持向Linkis提交多种任务类型，包括Spark SQL、Hive SQL、Scala、PythonSpark等，为了满足数据分析的需求，Scriptis左侧，提供查看用户工作空间信息、用户数据库和表信息、用户自定义函数，以及HDFS目录，同时支持上传下载，结果集导出等功能。Scriptis使用Linkis十分简单，可以很方便的在编辑栏书写脚本，提交到Linkis运行。  
+![Scriptis使用Linkis](../Images/EngineUsage/sparksql-run.png)
 ## 2.2. Scriptis管理台
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Linkis提供资源配置和管理的接口，如果希望对任务资源进行配置管理，可以在Scriptis的管理台界面进行设置，包括队列设置、资源配置、引擎实例个数等。  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Linkis提供资源配置和管理的接口，如果希望对任务资源进行配置管理，可以在Scriptis的管理台界面进行设置，包括队列设置、资源配置、引擎实例个数等。通过管理台，可以很方便的配置向Linkis提交任务的资源，使得更加方便快捷。
 ![Scriptis使用Linkis](../Images/EngineUsage/queue-set.png)
 
 ## 3. DataSphere Studio使用Linkis

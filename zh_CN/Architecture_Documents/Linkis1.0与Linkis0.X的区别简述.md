@@ -10,7 +10,20 @@ Linkis EngineConnPluginServer 支持以插件的形式动态加载 EngineConnPlu
                           
 &nbsp;&nbsp;&nbsp;&nbsp;  最后，对Linkis的所有微服务进行了归纳分类，总体分为了三个大层次：公共增强服务、计算治理服务和微服务治理服务，从代码层级结构、微服务命名和安装目录结构等多个方面来规范Linkis1.0的微服务体系。
 
-## 2. 服务对比
+
+##  2. 主要特点
+
+1.  **强化计算治理**，Linkis1.0主要从引擎管理、标签管理、ECM管理和资源管理等几个方面，全面强化了计算治理的综合管控能力，基于标签化的强大管控设计理念，使得Linkis1.0向多IDC化、多集群化、多容器化，迈出了坚实的一大步。
+
+2.  **简化用户实现新引擎**，EnginePlugin用于将原本实现一个新引擎，需要实现的相关接口和类，以及需要拆分的Entrance-EngineManager-Engine三层模块体系，融合到了一个接口之中，简化用户实现新引擎的流程和代码，真正做到只要实现一个类，就能接入一个新引擎。
+
+3.  **全栈计算存储引擎支持**，实现对计算请求场景（如Spark）、存储请求场景（如HBase）和常驻集群型服务（如SparkStreaming）的全面覆盖支持。
+
+4.  **高级计算策略能力改进**，新增Orchestrator实现丰富计算任务管理策略，且支持基于标签的解析和编排。
+
+5.  **安装部署改进**  优化一键安装脚本，支持容器化部署，简化用户配置。
+
+## 3. 服务对比
 
 &nbsp;&nbsp;&nbsp;&nbsp;  请参考以下两张图：
 
@@ -32,7 +45,7 @@ Linkis EngineConnPluginServer 支持以插件的形式动态加载 EngineConnPlu
 
 4. 公共增强服务，主要将0.X部分的BML服务/上下文服务/数据源服务/公共服务进行了优化和归并统一，便于大家管理和查看。
 
-## 3. Linkis Manager简介
+## 4. Linkis Manager简介
 
 &nbsp;&nbsp;&nbsp;&nbsp;  Linkis Manager 作为 Linkis 的管理大脑，主要由 AppManager、ResourceManager 和 LabelManager 组成。
 
@@ -42,11 +55,11 @@ Linkis EngineConnPluginServer 支持以插件的形式动态加载 EngineConnPlu
 
 &nbsp;&nbsp;&nbsp;&nbsp;  而 LabelManager 将基于多级组合标签，提供跨IDC、跨集群的 EngineConn 和 EngineConnManager 路由和管控能力；
 
-## 4. Linkis EngineConnPlugin简介
+## 5. Linkis EngineConnPlugin简介
 
 &nbsp;&nbsp;&nbsp;&nbsp;  EngineConnPlugin 主要用于降低新计算存储的接入和部署成本，真正做到让用户“只需实现一个类，就能接入一个全新计算存储引擎；只需执行一下脚本，即可快速部署一个全新引擎”。
 
-### 4.1 新引擎实现对比
+### 5.1 新引擎实现对比
 
 &nbsp;&nbsp;&nbsp;&nbsp;  以下是用户Linkis0.X实现一个新引擎需要实现的相关接口和类：
 
@@ -58,13 +71,13 @@ Linkis EngineConnPluginServer 支持以插件的形式动态加载 EngineConnPlu
 
 &nbsp;&nbsp;&nbsp;&nbsp;  其中EngineConnResourceFactory和EngineLaunchBuilder为非必需实现接口，只有EngineConnFactory为必需实现接口。
 
-### 4.2 新引擎启动流程
+### 5.2 新引擎启动流程
 
 &nbsp;&nbsp;&nbsp;&nbsp;  EngineConnPlugin 提供了 Server 服务，用于启动和加载所有的引擎插件，以下给出了一个新引擎启动，访问了 EngineConnPlugin-Server 的全部流程：
 
 ![Linkis 引擎启动流程](https://github.com/WeBankFinTech/Linkis/blob/dev-1.0.0/images/zh_CN/Linkis1.0/architecture/Linkis1.0-newEngine-initialization.png)
 
-## 5. Linkis EngineConn简介
+## 6. Linkis EngineConn简介
 
 &nbsp;&nbsp;&nbsp;&nbsp;  EngineConn，即原 Engine 模块，作为 Linkis 与底层计算存储引擎进行连接和交互的实际单元，是 Linkis 提供计算存储能力的基础。
 

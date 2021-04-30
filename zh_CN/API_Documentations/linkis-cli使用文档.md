@@ -67,7 +67,7 @@ linkis-cli目前仅支持同步提交，即向linkis提交任务后，不断询�
 ## 详细示例
 * 一、添加cli参数
 
-Cli参数可以通过手动指定的方式传入，此方式下会覆盖掉冲突的默认配置
+Cli参数可以通过手动指定的方式传入，此方式下会覆盖默认配置文件中的冲突配置项
 
         ./bin/linkis-client -engineType spark-2.4.3 -codeType sql -code "select count(*) from testdb.test;"  -submitUser hadoop -proxyUser hadoop  --gwUrl http://127.0.0.1:9001  --authStg token --authKey [tokenKey] --authVal [tokenValue] 
         

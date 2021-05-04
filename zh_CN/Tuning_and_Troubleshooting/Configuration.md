@@ -85,7 +85,7 @@ linkis-commons/linkis-module：该模块大部分参数可以参与默认值
  ("wds.linkis.server.restful.scan.packages", "")
  ("wds.linkis.server.restful.register.classes", "")
  ("wds.linkis.server.socket.service.scan.packages", BDP_SERVER_RESTFUL_SCAN_PACKAGES.getValue)
- ("wds.linkis.is.gateway", "false")
+ ("wds.linkis.is.gateway", "false") # 该模块是否为gateway
 ```
 
 linkis-commons/linkis-mybatis：
@@ -816,7 +816,7 @@ linkis-commons/linkis-storage：
  ("wds.linkis.storage.local.root.user", "root")
  ("wds.linkis.storage.fileSystem.group", "bdap") #文件所属组
  ("wds.linkis.storage.rs.file.type", "utf-8")
- ("wds.linkis.storage.rs.file.suffix", ".dolphin")
+ ("wds.linkis.storage.rs.file.suffix", ".dolphin") 
  ("wds.linkis.storage.result.set.package", "com.webank.wedatasphere.linkis.storage.resultset")
  ("wds.linkis.storage.result.set.classes", "txt.TextResultSet,table.TableResultSet,io.IOResultSet,html.HtmlResultSet,picture.PictureResultSet")
  ("wds.linkis.storage.build.fs.classes", "com.webank.wedatasphere.linkis.storage.factory.impl.BuildHDFSFileSystem,com.webank.wedatasphere.linkis.storage.factory.impl.BuildLocalFileSystem")

@@ -8,8 +8,9 @@ LinkisManager作为Linkis的一个独立微服务，对外提供了AppManager（
 ![01](../../../Images/Architecture/LinkisManager/LinkisManager-01.png)
 
 ### 名词解释
-- EngineConnManager： 引擎管理器，用于启动和管理引擎
-- EngineConn：引擎连接器，用于连接底层计算引擎
+- EngineConnManager（ECM）： 引擎管理器，用于启动和管理引擎
+- EngineConn（EC）：引擎连接器，用于连接底层计算引擎
+- ResourceManager（RM）：资源管理器，用于管理节点资源
 
 ## 二. 二级模块介绍
 

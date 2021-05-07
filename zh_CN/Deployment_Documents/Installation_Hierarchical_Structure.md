@@ -74,3 +74,66 @@ Linkis1.0简化后的目录结构如下，其中加深标注的文件，为用�
      ├── **linkis-daemon.sh** ── **快捷启停、重启单个微服务脚本**  
  &ensp;  ├── **linkis-start-all.sh** ── **一键启动全部微服务脚本**  
  &ensp;&ensp; └── **linkis-stop-all.sh** ── **一键停止全部微服务脚本**
+ 
+ # 配置项修改
+ 
+ 在执行完bin目录下的install.sh完成Linkis安装后，需要进行配置项修改，所有配置项位于con目录下，通常情况下需要修改db.sh、linkis.properties、linkis-env.sh三个配置文件，项目安装和配置可以参考文章《Linkis1.0安装》
+ 
+ # 微服务启停
+ 
+修改完配置项之后即可在sbin目录下启动微服务，所有微服务名称如下：
+ 
+├── linkis-cg-engineconnmanager 引擎管理服务  
+├── linkis-cg-engineplugin 引擎插件管理服务  
+├── linkis-cg-entrance 计算治理入口服务  
+├── linkis-cg-linkismanager 计算治理管理服务  
+├── linkis-mg-eureka 微服务注册中心服务  
+├── linkis-mg-gateway Linkis网关服务  
+├── linkis-ps-bml 物料库服务  
+├── linkis-ps-cs 上下文服务  
+├── linkis-ps-datasource 数据源服务  
+└── linkis-ps-publicservice 公共服务
+ 
+**微服务简称**：
+ 
+ | 简称 | 英文全称                | 中文全称   |
+ |------|-------------------------|------------|
+ | cg   | Computation Governance  | 计算治理   |
+ | mg   | Microservice Covernance | 微服务治理 |
+ | ps   | Public Enhancement Service  | 公共增强服务   |
+ 
+ 以往启停单个微服务需要进入到各个微服务的bin目录下，执行start/stop脚本，在微服务较多的情况下启停比较麻烦，增加了很多额外的切换目录操作，Linkis1.0将所有的微服务启停相关的脚本放置在了sbin目录下，只需要执行单个入口脚本即可。
+ 
+ **在Linkis/sbin目录下**：
+ 
+ 1.  一次性启动所有微服务：
+ 
+     sh linkis-start-all.sh
+ 
+ 2.  一次性关停所有微服务
+ 
+     sh linkis-stop-all.sh
+ 
+ 3.  启动单个微服务（服务名需要去掉linkis前缀如：mg-eureka）
+ 
+     sh linkis-daemon.sh start service-name
+ 
+     例如: sh linkis-daemon.sh start mg-eureka
+ 
+ 4.  关闭单个微服务
+ 
+     sh linkis-daemon.sh stop service-name
+ 
+     例如: sh linkis-daemon.sh stop mg-eureka
+ 
+ 5.  重启单个微服务
+ 
+     sh linkis-daemon.sh restart service-name
+ 
+     例如: sh linkis-daemon.sh restart mg-eureka
+ 
+ 6.  查看单个微服务的状态
+ 
+     sh linkis-daemon.sh status service-name
+ 
+     例如: sh linkis-daemon.sh status mg-eureka

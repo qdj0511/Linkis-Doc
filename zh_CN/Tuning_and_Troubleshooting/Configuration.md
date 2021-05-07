@@ -6,31 +6,31 @@
 ---
 linkis-commons/linkis-common：
 ```shell
- ("wds.linkis.encoding", "utf-8")
- ("wds.linkis.date.pattern", "yyyy-MM-dd'T'HH:mm:ssZ")
+ ("wds.linkis.encoding", "utf-8") #编码格式
+ ("wds.linkis.date.pattern", "yyyy-MM-dd'T'HH:mm:ssZ") #日期格式
  ("wds.linkis.field.split", "hadoop")
- ("wds.linkis.test.mode", false)
- ("wds.linkis.home",  ("LINKIS_HOME", "/appcom/Install/LinkisInstall"))
- ("wds.linkis.gateway.url", "http://127.0.0.1:9001/")
- ("wds.linkis.ldap.proxy.url", "")
+ ("wds.linkis.test.mode", false) #是否打开调试测试模式
+ ("wds.linkis.home",  ("LINKIS_HOME", "/appcom/Install/LinkisInstall")) #linkis安装目录
+ ("wds.linkis.gateway.url", "http://127.0.0.1:9001/") #gateway地址
+ ("wds.linkis.ldap.proxy.url", "") #ldap url地址
  ("wds.linkis.ldap.proxy.baseDN", "")
  ("wds.linkis.ldap.proxy.userNameFormat", "")
 ```
 
 linkis-commons/linkis-hadoop-common：
 ```shell
- ("wds.linkis.hadoop.root.user", "hadoop")
- ("wds.linkis.keytab.enable", false)
- ("wds.linkis.keytab.file", "/appcom/keytab/")
+ ("wds.linkis.hadoop.root.user", "hadoop") 
+ ("wds.linkis.keytab.enable", false) #是否打开kerberos
+ ("wds.linkis.keytab.file", "/appcom/keytab/") #kerberos的keytab路径
  ("wds.linkis.keytab.host", "127.0.0.1")
  ("wds.linkis.keytab.host.enabled", false)
- ("hadoop.config.dir",  ("HADOOP_CONF_DIR", ""))
- ("wds.linkis.hadoop.external.conf.dir.prefix", "/appcom/config/external-conf/hadoop")
+ ("hadoop.config.dir",  ("HADOOP_CONF_DIR", "")) #hadoop配置路径
+ ("wds.linkis.hadoop.external.conf.dir.prefix", "/appcom/config/external-conf/hadoop") #hadoop额外配置
  ```
 
  linkis-commons/linkis-httpclient：
  ```shell
- ("wds.linkis.httpclient.default.connect.timeOut", 50000)
+ ("wds.linkis.httpclient.default.connect.timeOut", 50000) #http连接超时时间
  ```
 
  linkis-commons/linkis-message-scheduler：
@@ -39,7 +39,7 @@ linkis-commons/linkis-hadoop-common：
 ("wds.linkis.ms.rpc.sync.timeout", 60 * 1000 * 5L)
 ```
 
-linkis-commons/linkis-module：
+linkis-commons/linkis-module：该模块大部分参数可以参与默认值
 ```shell
  ("wds.linkis.data.operate", "false")
  ("wds.linkis.server.component.exclude.packages", "")
@@ -85,16 +85,16 @@ linkis-commons/linkis-module：
  ("wds.linkis.server.restful.scan.packages", "")
  ("wds.linkis.server.restful.register.classes", "")
  ("wds.linkis.server.socket.service.scan.packages", BDP_SERVER_RESTFUL_SCAN_PACKAGES.getValue)
- ("wds.linkis.is.gateway", "false")
+ ("wds.linkis.is.gateway", "false") # 该模块是否为gateway
 ```
 
 linkis-commons/linkis-mybatis：
 ```shell
- ("wds.linkis.server.mybatis.mapperLocations", "")
+ ("wds.linkis.server.mybatis.mapperLocations", "") #配置扫包路径
  ("wds.linkis.server.mybatis.typeAliasesPackage", "")
  ("wds.linkis.server.mybatis.configLocation", "classpath:/mybatis-config.xml")
  ("wds.linkis.server.mybatis.BasePackage", "")
- ("wds.linkis.server.mybatis.datasource.url", "")
+ ("wds.linkis.server.mybatis.datasource.url", "") #引用linkis-mybatis模块配置连接url
  ("wds.linkis.server.mybatis.datasource.username", "")
  ("wds.linkis.server.mybatis.datasource.password", "")
  ("wds.linkis.server.mybatis.datasource.driver-class-name", "com.mysql.jdbc.Driver")
@@ -120,7 +120,7 @@ linkis-commons/linkis-protocol：
 
 linkis-commons/linkis-rpc：
 ```shell
- ("wds.linkis.rpc.broadcast.thread.num", new Integer(10))
+ ("wds.linkis.rpc.broadcast.thread.num", new Integer(10)) #rpc广播线程数量
  ("wds.linkis.rpc.eureka.client.refresh.interval", new TimeType("1s"))
  ("wds.linkis.rpc.eureka.client.refresh.wait.time.max", new TimeType("1m"))
  ("wds.linkis.rpc.receiver.asyn.consumer.thread.max", 10)
@@ -138,7 +138,7 @@ linkis-commons/linkis-rpc：
  
 linkis-commons/linkis-scheduler：
 ```shell
- ("wds.linkis.fifo.consumer.auto.clear.enabled", true)
+ ("wds.linkis.fifo.consumer.auto.clear.enabled", true) #是否开启自动清理
  ("wds.linkis.fifo.consumer.max.idle.time", new TimeType("2h"))
  ("wds.linkis.fifo.consumer.idle.scan.interval", new TimeType("6h"))
  ("wds.linkis.fifo.consumer.idle.scan.init.time", new TimeType("1s"))
@@ -147,9 +147,9 @@ linkis-commons/linkis-scheduler：
  
 linkis-computation-governance/linkis-computation-governance-common:
  ```shell
- ("wds.linkis.spark.engine.version", "2.4.3")
- ("wds.linkis.hive.engine.version", "1.2.1") 
- ("wds.linkis.python.engine.version", "python2")
+ ("wds.linkis.spark.engine.version", "2.4.3") #指定spark版本
+ ("wds.linkis.hive.engine.version", "1.2.1") #指定hive版本
+ ("wds.linkis.python.engine.version", "python2") #python版本
  ("wds.linkis.engineconn.name", "EngineConn")
  ("wds.linkis.engineconn.manager.name", "linkis-cg-engineconnmanager")
  ("wds.linkis.engineconn.manager.name", "linkis-cg-linkismanager")
@@ -158,7 +158,7 @@ linkis-computation-governance/linkis-computation-governance-common:
 
 linkis-computation-governance/linkis-engineconn/linkis-computation-engineconn:
 ```shell
- ("wds.linkis.engineconn.resultSet.default.store.path", "hdfs:///tmp")
+ ("wds.linkis.engineconn.resultSet.default.store.path", "hdfs:///tmp") #结果集存储路径
  ("wds.linkis.engine.resultSet.cache.max", new ByteType("0k"))
  ("wds.linkis.engine.default.limit", 5000)
  ("wds.linkis.engine.lock.expire.time", 2 * 60 * 1000)
@@ -175,7 +175,7 @@ linkis-computation-governance/linkis-engineconn/linkis-engineconn-common:
  ("wds.linkis.engine.task.expire.time", 1000 * 3600 * 24)
  ("wds.linkis.engine.lock.refresh.time", 1000 * 60 * 3)
  ("wds.linkis.engine.localpath.pwd.key", "PWD")
- ("wds.linkis.engine.logs.dir.key", "LOG_DIRS")
+ ("wds.linkis.engine.logs.dir.key", "LOG_DIRS") #配置引擎日志路径
  ```
 
 
@@ -209,7 +209,7 @@ linkis-computation-governance/linkis-engineconn/linkis-engineconn-executor/execu
 
 linkis-computation-governance/linkis-engineconn-manager/linkis-engineconn-manager-server:
 ```shell
- ("wds.linkis.ecm.async.bus.capacity", 500)
+ ("wds.linkis.ecm.async.bus.capacity", 500) #ecm模块异步总线初始化大小
  ("wds.linkis.ecm.async.bus.name", "em_async_bus")
  ("wds.linkis.ecm.async.bus.consumer.size", 30)
  ("wds.linkis.ecm.async.bus.max.free.time", ByteTimeUtils.timeStringAsMs("2m"))
@@ -239,7 +239,7 @@ linkis-computation-governance/linkis-entrance:
  ("wds.linkis.entrance.listenerBus.queue.capacity", new Integer(5000))
  ("wds.linkis.entrance.job.persist.wait.max", new TimeType("5m"))
  ("wds.linkis.entrance.multi.entrance.flag", true)
- ("wds.linkis.resultSet.store.path",  ("wds.linkis.filesystem.hdfs.root.path").getValue)
+ ("wds.linkis.resultSet.store.path",  ("wds.linkis.filesystem.hdfs.root.path").getValue) #配置结果集路径
  ("wds.linkis.query.application.name", "linkis-ps-publicservice")
  ("wds.linkis.entrance.config.log.path",  ("wds.linkis.filesystem.hdfs.root.path").getValue)
  ("wds.linkis.entrance.log.cacheMax", 500)
@@ -247,7 +247,7 @@ linkis-computation-governance/linkis-entrance:
  ("wds.linkis.console.configuration.application.name", "linkis-ps-publicservice")
  ("wds.linkis.console.variable.application.name", "linkis-ps-publicservice")
  ("wds.linkis.console.config.logPath", "wds.linkis.config.logPath")
- ("wds.linkis.default.requestApplication.name", "IDE")
+ ("wds.linkis.default.requestApplication.name", "IDE") #由用户创建的spark任务标识
  ("wds.linkis.default.runType", "sql")
  ("wds.linkis.default.create.service", "dss")
  ("wds.linkis.warn.log.exclude", "org.apache,hive.ql,hive.metastore,com.netflix,com.webank.wedatasphere")
@@ -268,15 +268,10 @@ linkis-computation-governance/linkis-entrance:
  ("bdp.dataworkcloud.entrance.end.flag", "info -")
  ("wds.linkis.hive.create.table.log", "numFiles")
  ("wds.linkis.hive.printinfo.log", "printInfo -")
- ("wds.linkis.entrance.datawmap.appid", "75116e6f690e6d222fb55f2dd6f9cb5a")
- ("wds.linkis.entrance.datamap.apptoken",
- ("wds.linkis.entrance.datamap.ip", "")
- ("wds.linkis.entrance.datamap.port", "9001")
- ("wds.linkis.entrance.bdp.env", "true")
  ("wds.linkis.entrance.shell.danger.check.enabled", false)
  ("wds.linkis.shell.danger.usage", "rm,sh,find,kill,python,for,source,hdfs,hadoop,spark-sql,spark-submit,pyspark,spark-shell,hive,yarn")
  ("wds.linkis.shell.white.usage", "cd,ls")
- ("wds.linkis.entrance.flow.creator", "nodeexecution")
+ ("wds.linkis.entrance.flow.creator", "nodeexecution") #工作流单节点执行任务标识
  ("wds.linkis.entrance.scheduler.creator", "scheduler")
  ("wds.linkis.entrance.is.qml", false)
  ("wds.linkis.entrance.push.progress", "false")
@@ -297,9 +292,9 @@ linkis-computation-governance/linkis-entrance-client:
  ("wds.linkis.client.engine.application.name.default", "IOEngine")
  ("wds.linkis.client.name.default", "storageClient")
  ("wds.linkis.client.parallelism.users.max", new Integer(100))
- ("wds.linkis.client.rpc.receiver.asyn.queue.size.max", new Integer(3000))
- ("wds.linkis.client.rpc.receiver.asyn.consumer.thread.max", new Integer(120))
- ("wds.linkis.client.engine.maxParallelismJobs", new Integer(25))
+ ("wds.linkis.client.rpc.receiver.asyn.queue.size.max", new Integer(3000)) #队列最大容量
+ ("wds.linkis.client.rpc.receiver.asyn.consumer.thread.max", new Integer(120)) #消费线程值
+ ("wds.linkis.client.engine.maxParallelismJobs", new Integer(25)) #任务并发数
  ```
 
 
@@ -361,10 +356,10 @@ linkis-computation-governance/linkis-manager/linkis-manager-commons/linkis-resou
  ("wds.linkis.rm.client.core.max", 10)
  ("wds.linkis.rm.client.memory.max", new ByteType("20g"))
  ("wds.linkis.rm.instance", 10)
- ("wds.linkis.rm.yarnqueue.cores.max", 150)
- ("wds.linkis.rm.yarnqueue.memory.max", new ByteType("450g"))
- ("wds.linkis.rm.yarnqueue.instance.max", 30)
- ("wds.linkis.rm.yarnqueue", "default")
+ ("wds.linkis.rm.yarnqueue.cores.max", 150) #使用队列最大核数
+ ("wds.linkis.rm.yarnqueue.memory.max", new ByteType("450g")) #使用队列的最大内存数
+ ("wds.linkis.rm.yarnqueue.instance.max", 30) #队列中最多启动的应用数
+ ("wds.linkis.rm.yarnqueue", "default") #队列名
  ("wds.linkis.rm.cluster", "sit")
  ("wds.linkis.rm.user.module.wait.used", 60 * 10L)
  ("wds.linkis.rm.user.module.wait.used", -1L)
@@ -502,9 +497,9 @@ linkis-engineconn-plugins/linkis-engineconn-plugin-framework/linkis-engineconn-p
  ("wds.linkis.engineconn.java.driver.cores", 2)
  ("wds.linkis.engineconn.java.driver.instannce", 1)
  ("wds.linkis.engineconn.type.name", "python")
- ("hive.config.dir",  ("HIVE_CONF_DIR", "/appcom/config/hive-config").getValue)
+ ("hive.config.dir",  ("HIVE_CONF_DIR", "/appcom/config/hive-config")) #hive配置路径
  ("linkis.hadoop.lib.native", "/appcom/Install/hadoop/lib/native")
- ("hadoop.config.dir",  ("HADOOP_CONF_DIR", "/appcom/config/hadoop-config").getValue)
+ ("hadoop.config.dir",  ("HADOOP_CONF_DIR", "/appcom/config/hadoop-config")) #hadoop配置路径
  ("wds.linkis.engineConn.jars", "", "engineConn额外的Jars")
  ("wds.linkis.engineConn.files", "", "engineConn额外的配置文件")
  ("wds.linkis.engineConn.javaOpts.default", s"-XX:+UseG1GC -XX:MaxPermSize=250m -XX:PermSize=128m " +
@@ -557,7 +552,7 @@ linkis-public-enhancements/linkis-bml/linkis-bml-client：
  ("wds.linkis.bml.getVersions.url", "getVersions")
  ("wds.linkis.bml.getBasic.url","getBasic")
  ("wds.linkis.bml.auth.token.key", "Validation-Code")
- ("wds.linkis.bml.auth.token.value", "BML-AUTH")
+ ("wds.linkis.bml.auth.token.value", "BML-AUTH") #BML token key
  ```
 
 linkis-public-enhancements/linkis-bml/linkis-bml-engine-hook：
@@ -568,7 +563,7 @@ linkis-public-enhancements/linkis-bml/linkis-bml-engine-hook：
 
 linkis-public-enhancements/linkis-bml/linkis-bml-server：
 ```shell
- ("wds.linkis.bml.hdfs.prefix", "/tmp/linkis")
+ ("wds.linkis.bml.hdfs.prefix", "/tmp/linkis") #bml文件存储在hdfs上的前缀文件路径
  ("wds.linkis.bml.cleanExpired.time", 100)
  ("wds.linkis.bml.clean.time.type", TimeUnit.HOURS)
  ("wds.linkis.server.maxThreadSize", 30)
@@ -819,9 +814,9 @@ linkis-commons/linkis-storage：
  ("wds.linkis.storage.root.user", "hadoop")
  ("wds.linkis.storage.hdfs.root.user", "hadoop")
  ("wds.linkis.storage.local.root.user", "root")
- ("wds.linkis.storage.fileSystem.group", "bdap")
+ ("wds.linkis.storage.fileSystem.group", "bdap") #文件所属组
  ("wds.linkis.storage.rs.file.type", "utf-8")
- ("wds.linkis.storage.rs.file.suffix", ".dolphin")
+ ("wds.linkis.storage.rs.file.suffix", ".dolphin") 
  ("wds.linkis.storage.result.set.package", "com.webank.wedatasphere.linkis.storage.resultset")
  ("wds.linkis.storage.result.set.classes", "txt.TextResultSet,table.TableResultSet,io.IOResultSet,html.HtmlResultSet,picture.PictureResultSet")
  ("wds.linkis.storage.build.fs.classes", "com.webank.wedatasphere.linkis.storage.factory.impl.BuildHDFSFileSystem,com.webank.wedatasphere.linkis.storage.factory.impl.BuildLocalFileSystem")

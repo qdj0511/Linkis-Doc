@@ -1,4 +1,4 @@
-LinkisManagerj架构设计
+LinkisManager架构设计
 ====================
 
 ## 一. 背景

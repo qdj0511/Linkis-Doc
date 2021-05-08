@@ -1,84 +1,114 @@
 Linkis
-============
+==========
 
 [![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
 
-English | [中文](zh_CN)
+[English](README.md) | [中文](README_CN.md)
 
 # Introduction
 
-&nbsp; &nbsp; &nbsp; &nbsp;Linkis builds a layer of computation middleware between upper applications and underlying engines. By using standard interfaces such as REST/WS/JDBC provided by Linkis, the upper applications can easily access the underlying engines such as MySQL/Spark/Hive/Presto/Flink, etc., and achieve the intercommunication of user resources like unified variables, scripts, UDFs, functions and resource files at the same time.
-                           
-&nbsp; &nbsp; &nbsp; &nbsp;As a computation middleware, Linkis provides powerful connectivity, reuse, expansion, and computation governance capabilities. By decoupling the application layer and the engine layer, it simplifies the complex network call relationship, and thus reduces the overall complexity and saves the development and maintenance costs as well.
-                           
-&nbsp; &nbsp; &nbsp; &nbsp;Since the first release of Linkis in 2019, it has accumulated more than 700 trial companies and 1000+ sandbox trial users, which involving diverse industries, from finance, banking, tele-communication, to manufactory, internet companies and so on. Lots of companies have already used Linkis as a unified entrance for the underlying computation and storage engines of the big data platform.
+ Linkis builds a layer of computation middleware between upper applications and underlying engines. By using standard interfaces such as REST/WS/JDBC provided by Linkis, the upper applications can easily access the underlying engines such as MySQL/Spark/Hive/Presto/Flink, etc., and achieve the intercommunication of user resources like unified variables, scripts, UDFs, functions and resource files at the same time.
+
+As a computation middleware, Linkis provides powerful connectivity, reuse, orchestration, expansion, and governance capabilities. By decoupling the application layer and the engine layer, it simplifies the complex network call relationship, and thus reduces the overall complexity and saves the development and maintenance costs as well.
+
+Since the first release of Linkis in 2019, it has accumulated more than **700** trial companies and **1000+** sandbox trial users, which involving diverse industries, from finance, banking, tele-communication, to manufactory, internet companies and so on. Lots of companies have already used Linkis as a unified entrance for the underlying computation and storage engines of the big data platform.
 
 
-![linkis-intro-01](en_US/Images/Architecture/linkis-intro-01.png)
+![linkis-intro-01](https://user-images.githubusercontent.com/11496700/84615498-c3030200-aefb-11ea-9b16-7e4058bf6026.png)
 
-![linkis-intro-02](en_US/Images/Architecture/linkis-intro-02.png)
-<br>
-<br>
+![linkis-intro-03](https://user-images.githubusercontent.com/11496700/84615483-bb435d80-aefb-11ea-81b5-67f62b156628.png)
 
-&nbsp; &nbsp; &nbsp; &nbsp;Based on the concept of the computation middleware architecture of Linkis, we have built a large amount of applications and systems on top of it. The following is the currently available open-source projects:  
- 
- - [**DataSphere Studio - Data Application Development & Management Framework**](https://github.com/WeBankFinTech/DataSphereStudio)
- 
- - [**Qualitis - Data Quality Tool**](https://github.com/WeBankFinTech/Qualitis)
- 
- - [**Scriptis - Data Development IDE Tool**](https://github.com/WeBankFinTech/Scriptis)
- 
- - [**Visualis - Data Visualization Tool**](https://github.com/WeBankFinTech/Visualis)
+# Features
 
- - [**Schedulis - Workflow Task Scheduling Tool**](https://github.com/WeBankFinTech/Schedulis)
+- **Support for diverse underlying computation storage engines**.  
+    Currently supported computation/storage engines: Spark, Hive, Python, Presto, ElasticSearch, MLSQL, TiSpark, JDBC, Shell, etc;      
+    Computation/storage engines to be supported: Flink, Impala, etc;      
+    Supported scripting languages: SparkSQL, HiveQL, Python, Shell, Pyspark, R, Scala and JDBC, etc.  
+  
+- **Powerful task/request governance capabilities**. With services such as Orchestrator, Label Manager and customized Spring Cloud Gateway, Linkis is able to provide multi-level labels based, cross-cluster/cross-IDC fine-grained routing, load balance, multi-tenancy, traffic control, resource control, and orchestration strategies like dual-active, active-standby, etc.  
 
-&nbsp; &nbsp; &nbsp; &nbsp;More upcoming tools  ready to be open-sourced, please stay tuned!
- 
-----
- 
- # Integrated engines
+- **Support full stack computation/storage engine**. As a computation middleware, it will receive, execute and manage tasks and requests for various computation storage engines, including batch tasks, interactive query tasks, real-time streaming tasks and storage tasks;
 
-| Engine     | Description                                                          | Contributor                                                           | Version    | Released? | User Manual |
-| --------------- | -------------------------------------------------------------------- | ------------------ | ------------- | ------------ |  ---------------------- |
-| **Flink**  | Flink EngineConn. Supports the submission of FlinkSQL code, and also supports the submission of Flink Jar to Linkis Manager to start a new Yarn application. | [hui zhu](https://github.com/liangqilang) & WeDataSphere | Linkis-1.1.0 | No, Expected in mid-2021 | To be perfected |
-| **Impala**     | Impala EngineConn. Supports the submission of Impala SQL code. | [hui zhu](https://github.com/liangqilang) | Linkis-0.12.0 | No, Expected in April | To be perfected |
-| **Presto**  | Presto EngineConn. Supports the submission of Presto SQL code. | [wForget](https://github.com/wForget)  | Linkis-0.11.0 | Open sourced | [Presto User Manual](zh_CN/Engine_Usage_Documentations/Presto_User_Manual.md) |
-| **ElasticSearch** | ElasticSearch EngineConn. Supports the submission of SQL and DSL code. | [wForget](https://github.com/wForget)  | Linkis-0.11.0 | Open sourced | [ElasticSearch User Manual](zh_CN/Engine_Usage_Documentations/ElasticSearch_User_Manual.md) |
-| **Shell**  | Shell EngineConn. Supports the submission of shell code. | WeDataSphere | Linkis-0.9.3 | Open sourced | [Shell User Manual](zh_CN/Engine_Usage_Documentations/Shell_User_Manual.md) |
-| **MLSQL**   | MLSQL EngineConn. Supports the submission of MLSQL code. | [WilliamZhu](https://github.com/allwefantasy) | Linkis-0.9.1 | Open sourced | [MLSQL User Manual](zh_CN/Engine_Usage_Documentations/MLSQL_User_Manual.md) |
-| **JDBC**   | JDBC EngineConn. Supports the submission of MySQL and HiveQL code. | WeDataSphere | Linkis-0.9.0 | Open sourced | [JDBC User Manual](zh_CN/Engine_Usage_Documentations/JDBC_User_Manual.md) |
-| **Spark**   | Spark EngineConn. Supports the submission of SQL, Scala, Pyspark and R code. | WeDataSphere | Linkis-0.5.0 | Open sourced | [Spark User Manual](zh_CN/Engine_Usage_Documentations/Spark_User_Manual.md) |
-| **Hive**   | Hive EngineConn. Supports the submission of HiveQL code. | WeDataSphere | Linkis-0.5.0 | Open sourced | [Hive User Manual](zh_CN/Engine_Usage_Documentations/Hive_User_Manual.md) |
-| **Python**   | Python EngineConn. Supports the submission of python code. | WeDataSphere | Linkis-0.5.0 | Open sourced | [Python User Manual](zh_CN/Engine_Usage_Documentations/Python_User_Manual.md) |
-| **TiSpark**   | TiSpark EngineConn. Support querying TiDB data by SparkSQL. | WeDataSphere | Linkis-0.5.0 | Open sourced | To be perfected |
+- **Resource management capabilities**.  ResourceManager is not only capable of managing resources for Yarn and Linkis EngineManger as in Linkis 0.X, but also able to provide label-based multi-level resource allocation and recycling, allowing itself to have powerful resource management capabilities across mutiple Yarn clusters and mutiple computation resource types;
 
-----
- 
- # Who is using Linkis
- 
- 
-----
- 
- # Document Announcement
- 
-&nbsp; &nbsp; &nbsp; &nbsp;Linkis uses GitBook for management, and the entire project will be organized into a GitBook e-book, which is convenient for everyone to download and use.
- 
-&nbsp; &nbsp; &nbsp; &nbsp;WeDataSphere will provide a unified document reading entrance in the future. For the usage of GitBook, please refer to: [GitBook User Manual](https://docs.gitbook.com/)
+- **Unified Context Service**. Generate Context ID for each task/request,  associate and manage user and system resource files (JAR, ZIP, Properties, etc.), result set, parameter variable, function, etc., across user, system, and computing engine. Set in one place, automatic reference everywhere;
 
-----
+- **Unified materials**. System and user-level unified material management, which can be shared and transferred across users and systems.
+
+# Supported engine types
+
+| **Engine** | **Supported Version** | **Linkis 0.X version requirement**| **Linkis 1.X version requirement** | **Description** |
+|:---- |:---- |:---- |:---- |:---- |
+|Flink |1.11.0|\>=dev-0.12.0, PR #703 not merged yet.|ongoing|	Flink EngineConn. Supports FlinkSQL code, and also supports Flink Jar to Linkis Manager to start a new Yarn application.|
+|Impala|\>=3.2.0, CDH >=6.3.0"|\>=dev-0.12.0, PR #703 not merged yet.|ongoing|Impala EngineConn. Supports Impala SQL.|
+|Presto|\>= 0.180|\>=0.11.0|ongoing|Presto EngineConn. Supports Presto SQL.|
+|ElasticSearch|\>=6.0|\>=0.11.0|ongoing|ElasticSearch EngineConn. Supports SQL and DSL code.|
+|Shell|Bash >=2.0|\>=0.9.3|\>=1.0.0_rc1|Shell EngineConn. Supports shell code.|
+|MLSQL|\>=1.1.0|\>=0.9.1|ongoing|MLSQL EngineConn. Supports MLSQL code.|
+|JDBC|MySQL >=5.0, Hive >=1.2.1|\>=0.9.0|\>=1.0.0_rc1|JDBC EngineConn. Supports MySQL and HiveQL code.|
+|Spark|Apache 2.0.0~2.4.7, CDH >=5.4.0|\>=0.5.0|\>=1.0.0_rc1|Spark EngineConn. Supports SQL, Scala, Pyspark and R code.|
+|Hive|Apache >=1.0.0, CDH >=5.4.0|\>=0.5.0|\>=1.0.0_rc1|Hive EngineConn. Supports HiveQL code.|
+|Hadoop|Apache >=2.6.0, CDH >=5.4.0|\>=0.5.0|ongoing|Hadoop EngineConn. Supports Hadoop MR/YARN application.|
+|Python|\>=2.6|\>=0.5.0|\>=1.0.0_rc1|Python EngineConn. Supports python code.|
+|TiSpark|1.1|\>=0.5.0|ongoing|TiSpark EngineConn. Support querying TiDB data by SparkSQL.|
+
+# Download
+
+Please go to the [Linkis releases page](https://github.com/WeBankFinTech/Linkis/wiki/Linkis-Releases) to download a compiled distribution or a source code package of Linkis.
+
+# Compile and deploy
+Please follow [Compile Guide](https://github.com/WeBankFinTech/Linkis-Doc/blob/master/zh_CN/Development_Documents/Linkis%E7%BC%96%E8%AF%91%E6%96%87%E6%A1%A3.md) to compile Linkis from source code.  
+Please refer to [Deployment_Documents](https://github.com/WeBankFinTech/Linkis-Doc/tree/master/zh_CN/Deployment_Documents) to do the deployment. 
+
+# Examples and Guidance
+You can find examples and guidance for how to use and manage Linkis in [User_Manual](https://github.com/WeBankFinTech/Linkis-Doc/tree/master/zh_CN/User_Manual), [Engine_Usage_Documents](https://github.com/WeBankFinTech/Linkis-Doc/tree/master/zh_CN/Engine_Usage_Documentations) and [API_Documents](https://github.com/WeBankFinTech/Linkis-Doc/tree/master/zh_CN/API_Documentations).
+
+# Documentation
+
+The documentation of linkis is in [Linkis-Doc](https://github.com/WeBankFinTech/Linkis-Doc) or in the [wiki](https://github.com/WeBankFinTech/Linkis/wiki).
+
+# Architecture
+Linkis services could be divided into three categories: computation governance services, public enhancement services and microservice governance services.  
+- The computation governance services, support the 3 major stages of processing a task/request: submission -> preparation -> execution;  
+- The public enhancement services, including the material library service, context service, and data source service;  
+- The microservice governance services, including Spring Cloud Gateway, Eureka and Open Feign.
+
+Below is the Linkis architecture diagram. You can find more detailed architecture docs in [Linkis-Doc/Architecture](https://github.com/WeBankFinTech/Linkis-Doc/tree/master/zh_CN/Architecture_Documents).
+![architecture](en_US/Images/Linkis_1.0_architecture.png)
+
+Based on Linkis the computation middleware, we've built a lot of applications and tools on top of it in the big data platform suite [WeDataSphere](https://github.com/WeBankFinTech/WeDataSphere). Below are the currently available open-source projects.
+
+![wedatasphere_stack_Linkis](en_US/Images/wedatasphere_stack_Linkis.png)
+
+- [**DataSphere Studio** - Data Application Integration& Development Framework](https://github.com/WeBankFinTech/DataSphereStudio)
+
+- [**Scriptis** - Data Development IDE Tool](https://github.com/WeBankFinTech/Scriptis)
+
+- [**Visualis** - Data Visualization Tool](https://github.com/WeBankFinTech/Visualis)
+
+- [**Schedulis** - Workflow Task Scheduling Tool](https://github.com/WeBankFinTech/Schedulis)
+
+- [**Qualitis** - Data Quality Tool](https://github.com/WeBankFinTech/Qualitis)
+
+- [**MLLabis** - Machine Learning Notebook IDE](https://github.com/WeBankFinTech/prophecis)
+
+More projects upcoming, please stay tuned.
 
 # Contributing
 
-&nbsp; &nbsp; &nbsp; &nbsp;Before contributing, please read the [Linkis Contribution Specification]() to understand how to contribute and submit your contribution.
+Contributions are always welcomed, we need more contributors to build Linkis together. either code, or doc, or other supports that could help the community.  
+For code and documentation contributions, please follow the [contribution guide](https://github.com/WeBankFinTech/Linkis/blob/master/Contributing_CN.md).
 
-----
+# Contact Us
 
-# Architecture
+Any questions or suggestions please kindly submit an issue.  
+You can scan the QR code below to join our WeChat and QQ group to get more immediate response.
 
-![Architecture](en_US/Images/Architecture/Linkis1.0-architecture.png)
+![introduction05](en_US/Images/wedatasphere_contact_01.png)
 
-----
+Meetup videos on [Bilibili](https://space.bilibili.com/598542776?from=search&seid=14344213924133040656).
 
-# License
+# Who is Using Linkis
 
-&nbsp; &nbsp; &nbsp; &nbsp;Linkis is under the Apache 2.0 license. See the [License](https://github.com/WeBankFinTech/Linkis/LICENSE) file for details.
+We opened [an issue](https://github.com/WeBankFinTech/Linkis/issues/23) for users to feedback and record who is using Linkis.  
+Since the first release of Linkis in 2019, it has accumulated more than **700** trial companies and **1000+** sandbox trial users, which involving diverse industries, from finance, banking, tele-communication, to manufactory, internet companies and so on.

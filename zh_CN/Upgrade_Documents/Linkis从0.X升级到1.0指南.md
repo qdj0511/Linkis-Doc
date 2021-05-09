@@ -8,7 +8,7 @@
 
 &nbsp;&nbsp;&nbsp;&nbsp;  因为1.0基本上对所有服务进行了升级，包括服务名进行了修改，所以0.X到1.X升级时服务需要进行重新安装。
 
-&nbsp;&nbsp;&nbsp;&nbsp;  在安装时如果需要保留1.X的数据，一定要选择1跳过建表语句（见下面代码）。
+&nbsp;&nbsp;&nbsp;&nbsp;  在安装时如果需要保留0.X的数据，一定要选择1跳过建表语句（见下面代码）。
 
 &nbsp;&nbsp;&nbsp;&nbsp;  Linkis1.0 的安装可以参考[如何快速安装使用Linkis-1.0-RC1](https://github.com/WeBankFinTech/Linkis/wiki/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8Linkis-1.0-RC1)
 

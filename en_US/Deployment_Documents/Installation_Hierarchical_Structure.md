@@ -22,7 +22,7 @@ Therefore, in Linkis 1.0, we have greatly optimized and adjusted the installatio
 4.The log directory is no longer provided for each microservice, modified to be shared by all microservices
 > The Log directory contains log files of all microservices.
 
-The simplified directory structure of Linkis1.0 is as follows. The files marked with deepening are the directory items that users must use when installing and using. Other directory items do not need to be concerned when they are used for the first time without special circumstances:
+The simplified directory structure of Linkis1.0 is as follows.
 
 ````
 ├── bin ──installation directory
@@ -30,11 +30,11 @@ The simplified directory structure of Linkis1.0 is as follows. The files marked 
 │ ├── checkServices.sh ── Microservice status check
 │ ├── common.sh ── Some public shell functions
 │ ├── install-io.sh ── Used for dependency replacement during installation
-│ └── **install.sh** ── **Main script of Linkis installation**
+│ └── install.sh ── Main script of Linkis installation
 ├── conf ──configuration directory
-│ ├── **db.sh** ──**mysql database configuration**
+│ ├── db.sh ──mysql database configuration
 │ ├── linkis-computation-governance ──Compute governance module configuration
-│ ├── **linkis-env.sh** ──**Linkis dependent environment configuration**
+│ ├── linkis-env.sh ──Linkis dependent environment configuration
 │ ├── linkis.properties ──Linkis execution environment configuration
 │ ├── linkis-public-enhancements ──Public enhancement service module configuration
 │ └── linkis-spring-cloud-services ──SpringCloud environment configuration
@@ -65,9 +65,9 @@ The simplified directory structure of Linkis1.0 is as follows. The files marked 
 │ └── linkis\_ps-publicservice.pid ──public microservice
 └── sbin ──microservice start and stop script directory
     ├── ext ──Start and stop script directory of each microservice
-    ├── **linkis-daemon.sh** ── **Quick start and stop, restart a single microservice script**
-    ├── **linkis-start-all.sh** ── **Start all microservice scripts with one click**
-    └── **linkis-stop-all.sh** ── **Stop all microservice scripts with one click**
+    ├── linkis-daemon.sh ── Quick start and stop, restart a single microservice script
+    ├── linkis-start-all.sh ── Start all microservice scripts with one click
+    └── linkis-stop-all.sh ── Stop all microservice scripts with one click
 ````
 
 # Configuration item modification
@@ -79,16 +79,16 @@ After executing the install.sh in the bin directory to complete the Linkis insta
 After modifying the configuration items, you can start the microservice in the sbin directory. The names of all microservices are as follows:
 
 ````
-├── linkis-cg-engineconnmanager engine management service
-├── linkis-cg-engineplugin EngineConnPlugin management service
-├── linkis-cg-entrance computing governance entrance service
-├── linkis-cg-linkismanager computing governance management service
-├── linkis-mg-eureka microservice registry service
-├── linkis-mg-gateway Linkis gateway service
-├── linkis-ps-bml material library service
-├── linkis-ps-cs context service
-├── linkis-ps-datasource data source service
-└── linkis-ps-publicservice public service
+├── linkis-cg-engineconnmanager  ──engine management service
+├── linkis-cg-engineplugin  ──EngineConnPlugin management service
+├── linkis-cg-entrance  ──computing governance entrance service
+├── linkis-cg-linkismanager  ──computing governance management service
+├── linkis-mg-eureka  ──microservice registry service
+├── linkis-mg-gateway  ──Linkis gateway service
+├── linkis-ps-bml  ──material library service
+├── linkis-ps-cs  ──context service
+├── linkis-ps-datasource  ──data source service
+└── linkis-ps-publicservice  ──public service
 ````
 **Microservice abbreviation**:
 

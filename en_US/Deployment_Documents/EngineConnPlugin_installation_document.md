@@ -21,9 +21,12 @@ If you are adding a new engine, you can refer to hive's assembly configuration m
 ## 2. Engine Installation
 ### 2.1 Plugin package installation
 1.First, confirm the dist directory of the engine: wds.linkis.engineconn.home (get the value of this parameter from ${LINKIS_HOME}/conf/linkis.properties), this parameter is used by EngineConnPluginServer to read the configuration file that the engine depends on And third-party Jar packages. If the parameter (wds.linkis.engineconn.dist.load.enable=true) is set, the engine in this directory will be automatically read and loaded into the Linkis BML (material library).
+
 2.Second, confirm the engine Jar package directory:
 wds.linkis.engineconn.plugin.loader.store.path, which is used by EngineConnPluginServer to read the actual implementation Jar of the engine.
-It is highly recommended to specify wds.linkis.engineconn.home and wds.linkis.engineconn.plugin.loader.store.path as the same directory, so that you can directly unzip the engine ZIP package exported by maven into this directory, such as: Place it in the ${LINKIS_HOME}/lib/linkis-engineconn-plugins directory.
+
+It is highly recommended to specify **wds.linkis.engineconn.home and wds.linkis.engineconn.plugin.loader.store.path as** the same directory, so that you can directly unzip the engine ZIP package exported by maven into this directory, such as: Place it in the ${LINKIS_HOME}/lib/linkis-engineconn-plugins directory.
+
 ```
 ${LINKIS_HOME}/lib/linkis-engineconn-plugins:
 └── hive
@@ -33,7 +36,9 @@ ${LINKIS_HOME}/lib/linkis-engineconn-plugins:
     └── dist
     └── plugin
 ```
+
 If the two parameters do not point to the same directory, you need to place the dist and plugin directories separately, as shown in the following example:
+
 ```
 ## dist directory
 ${LINKIS_HOME}/lib/linkis-engineconn-plugins/dist:
@@ -49,13 +54,16 @@ ${LINKIS_HOME}/lib/linkis-engineconn-plugins/plugin:
     └── plugin
 ```
 ### 2.2 Configuration modification of management console (optional)
+
 The configuration of the Linkis1.0 management console is managed according to the engine label. If the new engine has configuration parameters, you need to insert the corresponding configuration parameters in the Configuration, and you need to insert the parameters in three tables:
+
 ```
 linkis_configuration_config_key: Insert the key and default values of the configuration parameters of the engin
 linkis_manager_label: Insert engine label such as hive-1.2.1
 linkis_configuration_category: Insert the catalog relationship of the engine
 linkis_configuration_config_value: Insert the configuration that the engine needs to display
 ```
+
 If it is an existing engine and a new version is added, you can modify the version of the corresponding engine in the linkis_configuration_dml.sql file for execution
 
 ### 2.3 Engine refresh

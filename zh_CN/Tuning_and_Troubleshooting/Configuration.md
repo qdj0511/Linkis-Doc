@@ -1,7 +1,7 @@
 > Linkis1.0在0.x的基础上做了大量优化，在结构上减少了微服务的数量，当然Linkis1.0的各个微服务的高可配有点，也被继承了下来，不过1.0在0.x配置的基础上进行了简化，在安装后提供了一个公共配置的文件，避免出现同一个配置出现在多个地方的情况。本文档将会把Linkis1.0的参数分模块列举出来。
 
 ## 1. Linkis参数列表
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;为了叙述的方便，在以下配置参数中，括号右边为key值，左边为value。可以在对应的微服务中properties文件中进行配置，当配置时，会覆盖默认参数。当然，本文档的参数仅仅只做参考，因为部署的环境差异，为了您更好的使用Linkis，强烈建议在配置相关参数，同时结合源码进行适配。一般在配置时，如果参数值为字符串，需要在配置时带上引号，除字符串类型之外的参数，则不需要。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;为了叙述的方便，在以下配置参数中，括号左边为key值，右边为value。可以在对应的微服务中properties文件中进行配置，当配置时，会覆盖默认参数。当然，本文档的参数仅仅只做参考，因为部署的环境差异，为了您更好的使用Linkis，强烈建议在配置相关参数，同时结合源码进行适配。一般在配置时，如果参数值为字符串，需要在配置时带上引号，除字符串类型之外的参数，则不需要。
 
 ---
 linkis-commons/linkis-common：
@@ -35,8 +35,8 @@ linkis-commons/linkis-hadoop-common：
 
  linkis-commons/linkis-message-scheduler：
  ```shell
-("wds.linkis.ms.service.scan.package", "com.webank.wedatasphere")
-("wds.linkis.ms.rpc.sync.timeout", 60 * 1000 * 5L)
+("wds.linkis.ms.service.scan.package", "com.webank.wedatasphere") #指定的base package
+("wds.linkis.ms.rpc.sync.timeout", 60 * 1000 * 5L) #rpc超时时间
 ```
 
 linkis-commons/linkis-module：该模块大部分参数可以参与默认值
@@ -85,7 +85,7 @@ linkis-commons/linkis-module：该模块大部分参数可以参与默认值
  ("wds.linkis.server.restful.scan.packages", "")
  ("wds.linkis.server.restful.register.classes", "")
  ("wds.linkis.server.socket.service.scan.packages", BDP_SERVER_RESTFUL_SCAN_PACKAGES.getValue)
- ("wds.linkis.is.gateway", "false")
+ ("wds.linkis.is.gateway", "false") #该模块是否为gateway
 ```
 
 linkis-commons/linkis-mybatis：
@@ -95,20 +95,20 @@ linkis-commons/linkis-mybatis：
  ("wds.linkis.server.mybatis.configLocation", "classpath:/mybatis-config.xml")
  ("wds.linkis.server.mybatis.BasePackage", "")
  ("wds.linkis.server.mybatis.datasource.url", "") #引用linkis-mybatis模块配置连接url
- ("wds.linkis.server.mybatis.datasource.username", "")
- ("wds.linkis.server.mybatis.datasource.password", "")
- ("wds.linkis.server.mybatis.datasource.driver-class-name", "com.mysql.jdbc.Driver")
- ("wds.linkis.server.mybatis.datasource.initialSize", new Integer(1))
+ ("wds.linkis.server.mybatis.datasource.username", "") #jdbc连接username
+ ("wds.linkis.server.mybatis.datasource.password", "") #jdbc连接password
+ ("wds.linkis.server.mybatis.datasource.driver-class-name", "com.mysql.jdbc.Driver") #指定Driver Class
+ ("wds.linkis.server.mybatis.datasource.initialSize", new Integer(1)) #连接池初始大小
  ("wds.linkis.server.mybatis.datasource.minIdle", new Integer(1))
  ("wds.linkis.server.mybatis.datasource.maxActive", new Integer(20))
- ("wds.linkis.server.mybatis.datasource.maxWait", new Integer(6000))
- ("wds.linkis.server.mybatis.datasource.timeBetweenEvictionRunsMillis", new Integer(60000))
- ("wds.linkis.server.mybatis.datasource.minEvictableIdleTimeMillis", new Integer(300000))
+ ("wds.linkis.server.mybatis.datasource.maxWait", new Integer(6000)) #获取连接等待超时的时间
+ ("wds.linkis.server.mybatis.datasource.timeBetweenEvictionRunsMillis", new Integer(60000)) #进行一次检测的间隔时间
+ ("wds.linkis.server.mybatis.datasource.minEvictableIdleTimeMillis", new Integer(300000)) #连接在池中最小生存时间
  ("wds.linkis.server.mybatis.datasource.validationQuery", "SELECT 1")
  ("wds.linkis.server.mybatis.datasource.testWhileIdle", new Boolean(true))
  ("wds.linkis.server.mybatis.datasource.testOnBorrow", new Boolean(false))
  ("wds.linkis.server.mybatis.datasource.testOnReturn", new Boolean(false))
- ("wds.linkis.server.mybatis.datasource.poolPreparedStatements", new Boolean(true))
+ ("wds.linkis.server.mybatis.datasource.poolPreparedStatements", new Boolean(true)) #打开PSCache
  ```
  
  
@@ -121,12 +121,12 @@ linkis-commons/linkis-protocol：
 linkis-commons/linkis-rpc：
 ```shell
  ("wds.linkis.rpc.broadcast.thread.num", new Integer(10)) #rpc广播线程数量
- ("wds.linkis.rpc.eureka.client.refresh.interval", new TimeType("1s"))
- ("wds.linkis.rpc.eureka.client.refresh.wait.time.max", new TimeType("1m"))
- ("wds.linkis.rpc.receiver.asyn.consumer.thread.max", 10)
- ("wds.linkis.rpc.receiver.asyn.consumer.freeTime.max", new TimeType("2m"))
- ("wds.linkis.rpc.receiver.asyn.queue.size.max", 1000)
- ("wds.linkis.rpc.sender.asyn.consumer.thread.max", 5)
+ ("wds.linkis.rpc.eureka.client.refresh.interval", new TimeType("1s")) #eureka client刷新间隔
+ ("wds.linkis.rpc.eureka.client.refresh.wait.time.max", new TimeType("1m")) #刷新最大等待时间
+ ("wds.linkis.rpc.receiver.asyn.consumer.thread.max", 10) #rpc consumer最大线程数量
+ ("wds.linkis.rpc.receiver.asyn.consumer.freeTime.max", new TimeType("2m")) #consumer最大空闲时间
+ ("wds.linkis.rpc.receiver.asyn.queue.size.max", 1000) #队列最大线程数
+ ("wds.linkis.rpc.sender.asyn.consumer.thread.max", 5) #sender的consumer最大线程数量
  ("wds.linkis.rpc.sender.asyn.consumer.freeTime.max", new TimeType("2m"))
  ("wds.linkis.rpc.sender.asyn.queue.size.max", 300)
  ("wds.linkis.gateway.conf.enable.publicservice", true)
@@ -816,7 +816,7 @@ linkis-commons/linkis-storage：
  ("wds.linkis.storage.local.root.user", "root")
  ("wds.linkis.storage.fileSystem.group", "bdap") #文件所属组
  ("wds.linkis.storage.rs.file.type", "utf-8")
- ("wds.linkis.storage.rs.file.suffix", ".dolphin")
+ ("wds.linkis.storage.rs.file.suffix", ".dolphin") 
  ("wds.linkis.storage.result.set.package", "com.webank.wedatasphere.linkis.storage.resultset")
  ("wds.linkis.storage.result.set.classes", "txt.TextResultSet,table.TableResultSet,io.IOResultSet,html.HtmlResultSet,picture.PictureResultSet")
  ("wds.linkis.storage.build.fs.classes", "com.webank.wedatasphere.linkis.storage.factory.impl.BuildHDFSFileSystem,com.webank.wedatasphere.linkis.storage.factory.impl.BuildLocalFileSystem")

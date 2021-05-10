@@ -50,8 +50,7 @@
    2. 系统版本不匹配：目前Linkis支持Linux大部分版本，对cent
       os版本的兼容性最好，某些系统版本会存在命令不兼容的情况，例如ubantu中对yum的兼容较差，可能会导致安装部署是出现yum相关的报错，此外也建议尽量不要在windows下部署linkis，目前没有脚本完全兼容.bat命令。
 
-   3. 配置项缺失：linkis
-      1.0版本需要修改的配置文件有两个，linkis-env.sh和db.sh，
+   3. 配置项缺失：linkis1.0版本需要修改的配置文件有两个，linkis-env.sh和db.sh，
 
       前者包含了linkis在执行期间需要加载的环境参数，后者是linkis自身需要存储相关表的数据库信息。通常情况下如果缺少对应的配置，报错信息会出现Key值相关的异常，例如db.sh没填写相关数据库配置时，会出现unknow
       mysql server host ‘-P’异常，这是由于host缺失导致的。

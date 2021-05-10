@@ -55,9 +55,9 @@ The architecture of ContextCache is shown in the following figure:
 
 The storage structure of ContextCache is divided into three layers:
 
-**ContextCach:** stores the mapping relationship between ContextID and ContextIDValue, and can complete the recovery of ContextID according to the LRU algorithm;
+**ContextCache:** stores the mapping relationship between ContextID and ContextIDValue, and can complete the recovery of ContextID according to the LRU algorithm;
 
-**ContextIDValue: ** CSKeyValueContext that has stored all context information and indexes of ContextID. And count the memory and usage records of ContestID.
+**ContextIDValue:** CSKeyValueContext that has stored all context information and indexes of ContextID. And count the memory and usage records of ContestID.
 
 **CSKeyValueContext:** Contains the CSInvertedIndexSet index set that stores and supports keywords according to type, and also contains the storage set CSKeyValueMapSet that stores ContextKey and ContextValue.
 

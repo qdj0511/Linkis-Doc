@@ -78,7 +78,7 @@ EUREKA_URL=http://$EUREKA_INSTALL_IP:$EUREKA_PORT/eureka/
 change into:
 
 ``
-EUREKA_URL=http://$EUREKA_INSTALL_IP:$EUREKA_PORT/eureka/,**http:/server2:port/eureka/**
+EUREKA_URL=http://$EUREKA_INSTALL_IP:$EUREKA_PORT/eureka/,http:/server2:port/eureka/
 ``
 
 In the same way, on the server2 machine, you need to change the value in **conf/linkis-env.sh**
@@ -90,7 +90,7 @@ EUREKA_URL=http://$EUREKA_INSTALL_IP:$EUREKA_PORT/eureka/
 change into:
 
 ``
-EUREKA_URL=http://$EUREKA_INSTALL_IP:$EUREKA_PORT/eureka/,**http:/server1:port/eureka/**
+EUREKA_URL=http://$EUREKA_INSTALL_IP:$EUREKA_PORT/eureka/,http:/server1:port/eureka/
 ``
 
 After the modification, start the microservice, enter the eureka registration interface from the web side, you can see that the microservice has been successfully registered to eureka, and the DS

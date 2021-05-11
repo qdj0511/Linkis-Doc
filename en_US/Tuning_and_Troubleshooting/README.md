@@ -1,10 +1,10 @@
 ## Tuning and troubleshooting
 
-In the process of preparing for the release of the version, we will try our best to find deployment and installation problems in advance and then repair them. Because everyone has some differences in the deployment environment, we sometimes have no way to predict all the problems and solutions in advance. However, due to the existence of the community, many of your problems will overlap. Perhaps the installation and deployment problems you have encountered have already been discovered and solved by users. Therefore, for some problems that cannot be accurately located by themselves, the basic idea and priority of the recommended troubleshooting level can be According to: **Community issue column search keywords—\>Check the "Q\&A Problem Summary" document in the community—\>Locate system log—\>Community user group consultation and communication—\>Locate source code remote debug**
+In the process of preparing for the release of a version, we will try our best to find deployment and installation problems in advance and then repair them. Because everyone has some differences in the deployment environments, we sometimes have no way to predict all the problems and solutions in advance. However, due to the existence of the community, many of your problems will overlap. Perhaps the installation and deployment problems you have encountered have already been discovered and solved by users. Therefore, for some problems that cannot be accurately located by themselves, the basic idea and priority of the recommended troubleshooting steps can be: **Search keywords in the community issue catalog —\>Check the "Q\&A Problem Summary" document in the community—\>Locate system log—\>Community user group consultation and communication—\>Locate source code and do remote debug**
 
-### Ⅰ. How to locate the abnormal log
+### Ⅰ. How to locate the exception log
 
-If an interface request reports an error, we can locate the problematic microservice based on the return of the interface. Under normal circumstances, we can **locate according to the URL specification. **URLs in the Linkis interface follow certain design specifications. That is, the format of **/api/rest_j/v1/{applicationName}/.+**, the application name can be located through applicationName. Some applications themselves are microservices. At this time, the application name is the same as the microservice name, and some applications belong to a certain For a microservice, at this time, you should find the belonging microservice by the application name, and check the log under the corresponding microservice. The corresponding relationship between the microservice and the application name is given below.
+If an interface request reports an error, we can locate the problematic microservice based on the return of the interface. Under normal circumstances, we can **locate according to the URL specification. **URLs in the Linkis interface follow certain design specifications. That is, the format of **/api/rest_j/v1/{applicationName}/.+**, the application name can be located through applicationName. Some applications themselves are microservices. At this time, the application name is the same as the microservice name, and part of the application itself is a microservice, at this time, you should find the belonging microservice by the application name, and check the log under the corresponding microservice. The corresponding relationship between the microservice and the application name is given below.
 
 | **ApplicationName** | **Microservice** |
 | -------------------- | -------------------- |
@@ -27,9 +27,9 @@ On the homepage of the github community, the issue column retains some of the pr
 
 ### Ⅲ. "Q\&A Question Summary"
 
-《Linkis 1.0 FAQ》, this document contains a summary of common problems and solutions during the installation and deployment process
+"Linkis 1.0 FAQ", this document contains a summary of common problems and solutions during the installation and deployment process.
 
-### Ⅳ. positioning system log
+### Ⅳ. Locating system log
 
 Generally, errors can be divided into three stages: an error is reported when installing and executing install.sh, an error is reported when the microservice is started, and an error is reported when the engine is started.
 
@@ -65,7 +65,7 @@ Generally, errors can be divided into three stages: an error is reported when in
     └─├── linkis-mg-gateway
     ````
 
-    It includes three microservice modules: computing governance, public enhancement, and microservice management. Each microservice contains three logs, linkis-gc.log, linkis.log, and linkis.out. Corresponding to the service's GC log, service log, and service System.out log.
+    It includes three microservice modules: computing governance, public enhancement, and microservice management. Each microservice contains three logs, linkis-gc.log, linkis.log, and linkis.out, corresponding to the service's GC log, service log, and service System.out log.
     
     Under normal circumstances, when an error occurs when starting a microservice, you can cd to the corresponding service in the log directory to view the related log to troubleshoot the problem. Generally, the most frequently occurring problems can also be divided into three categories:
 
@@ -73,7 +73,7 @@ Generally, errors can be divided into three stages: an error is reported when in
     
     2.	**Necessary configuration parameters are missing**: For some microservices, certain user-defined parameters must be loaded before they can be started normally. For example, the linkis-cg-engineplugin microservice will load conf/ when it starts. For the configuration related to wds.linkis.engineconn.\* in linkis.properties, if the user changes the Linkis path after installation, if the configuration does not correspond to the modification, an error will be reported when the linkis-cg-engineplugin microservice is started.
     
-    3.	**System environment is not compatible**: It is recommended that users refer to the recommended system and application versions in the official documents as much as possible when deploying and installing, and install necessary system plug-ins, such as expect, yum, etc. If the application version is not compatible, It may cause errors related to the application. For example, the incompatibility of SQL statements in the mysql5.7 version may cause errors in the linkis.ddl and linkis.dml files when initializing the db during the installation process. You need to refer to the "Q\&A Problem Summary" or It can be solved only by deploying the documents to make the corresponding settings.
+    3.	**System environment is not compatible**: It is recommended that users refer to the recommended system and application versions in the official documents as much as possible when deploying and installing, and install necessary system plug-ins, such as expect, yum, etc. If the application version is not compatible, It may cause errors related to the application. For example, the incompatibility of SQL statements in the mysql5.7 version may cause errors in the linkis.ddl and linkis.dml files when initializing the db during the installation process. You need to refer to the "Q\&A Problem Summary" or the deployment documentation to make the corresponding settings.
     
 3. **Report error during microservice execution period**
 
@@ -81,7 +81,7 @@ Generally, errors can be divided into three stages: an error is reported when in
     
     1. **Manually installed and deployed microservices report errors**: The logs of this type of microservice are unified under the log/ directory. After locating the microservice, enter the corresponding directory to view it.
     
-    2. **Dynamic start engine failure**: insufficient resources, request engine failure: When this type of error occurs, it is not necessarily due to insufficient resources, because the front end will only grab the logs after the Spring project is started, for errors before the engine is started Cannot be crawled well. There are three kinds of high-frequency problems found in the actual use process of internal test users:
+    2. **engine start failure**: insufficient resources, request engine failure: When this type of error occurs, it is not necessarily due to insufficient resources, because the front end will only grab the logs after the Spring project is started, for errors before the engine is started cannot be fetched well. There are three kinds of high-frequency problems found in the actual use process of internal test users:
     
         a. **The engine cannot be created because there is no engine directory permission**: The log will be printed to the linkis.out file under the cg-engineconnmanager microservice. You need to enter the file to view the specific reason.
         
@@ -91,8 +91,8 @@ Generally, errors can be divided into three stages: an error is reported when in
         
 ### Ⅴ. Community user group consultation and communication
 
-For problems that cannot be resolved according to the above process positioning during the installation and deployment process, you can send error messages in our community group. In order to facilitate community partners and developers to help solve them and improve efficiency, it is recommended that when you ask questions, you can The problem phenomenon, related log information, and the places that have been checked are sent out together. If you think it may be an environmental problem, you need to list the corresponding application version together**. We provide two online groups: WeChat group and QQ group. The communication channels and specific contact information can be found at the bottom of the Linkis github homepage.
+For problems that cannot be resolved according to the above process positioning during the installation and deployment process, you can send error messages in our community group. In order to facilitate community partners and developers to help solve them and improve efficiency, it is recommended that when you ask questions, You can describe the problem phenomenon, related log information, and the places that have been checked are sent out together. If you think it may be an environmental problem, you need to list the corresponding application version together**. We provide two online groups: WeChat group and QQ group. The communication channels and specific contact information can be found at the bottom of the Linkis github homepage.
 
 ### Ⅵ. locate the source code by remote debug
 
-Under normal circumstances, remote debugging of source code is the most effective way to locate problems, but compared to document review, users need to have a certain understanding of the source code structure. It is recommended that you check the [Linkis source code level detailed structure](https://github.com/WeBankFinTech/Linkis/wiki/Linkis%E6%BA%90%E7%A0%81%E5%B1%82%E7%BA%A7%E7%BB%93%E6%9E%84%E8%AF%A6%E8%A7%A3) in the Linkis WIKI before remote debugging.Detailed structure have a preliminary understanding of the source code structure of the project, after a certain degree of familiarity, you can refer to [How to Debug Linkis](https://github.com/WeBankFinTech/Linkis/wiki/Linkis%E5%92%8CDSS%E8%B0%83%E8%AF%95%E6%96%87%E6%A1%A3) The debugging corresponding to the micro The code under the service.
+Under normal circumstances, remote debugging of source code is the most effective way to locate problems, but compared to document review, users need to have a certain understanding of the source code structure. It is recommended that you check the [Linkis source code level detailed structure](https://github.com/WeBankFinTech/Linkis/wiki/Linkis%E6%BA%90%E7%A0%81%E5%B1%82%E7%BA%A7%E7%BB%93%E6%9E%84%E8%AF%A6%E8%A7%A3) in the Linkis WIKI before remote debugging.After having a certain degree of familiarity to the the source code structure of the project, after a certain degree of familiarity, you can refer to [How to Debug Linkis](https://github.com/WeBankFinTech/Linkis/wiki/Linkis%E5%92%8CDSS%E8%B0%83%E8%AF%95%E6%96%87%E6%A1%A3).

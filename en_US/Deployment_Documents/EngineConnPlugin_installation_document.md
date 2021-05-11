@@ -5,8 +5,8 @@ This article mainly introduces the use of Linkis EngineConnPlugins, mainly from 
 
 ## 1. Compilation and packaging of EngineConnPlugins
 
-After linkis1.0, the engine is managed by EngineConnManager, and the EngineConnPlugin (ECP) supports real-time effect.
-In order to facilitate the EngineConnManager to be loaded into the corresponding EngineConnPlugin through tags, it needs to be packaged according to the following directory structure (take hive as an example):
+After linkis1.0, the engine is managed by EngineConnManager, and the EngineConnPlugin (ECP) supports real-time effectiveness.
+In order to facilitate the EngineConnManager to be loaded into the corresponding EngineConnPlugin by labels, it needs to be packaged according to the following directory structure (take hive as an example):
 ```
 hive: engine home directory, must be the name of the engine
 └── dist # Dependency and configuration required for engine startup, different versions of the engine need to be in this directory to prevent the corresponding version directory

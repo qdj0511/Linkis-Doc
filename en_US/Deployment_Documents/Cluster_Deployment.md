@@ -9,14 +9,14 @@ Linkis's stand-alone deployment is simple, but it cannot be used in a production
 Linkis1.0 still maintains the SpringCloud-based microservice architecture, in which each microservice supports multiple active deployment schemes. Of course, different microservices play different roles in the system. Some microservices are called frequently, and more It may be in a high load situation. **On the machine where EngineConnManager is installed, the memory load of the machine will be relatively high because the user's engine process will be started, and the load of other types of microservices on the machine will be relatively low.* *For this kind of microservices, we recommend starting multiple distributed deployments. The total resources dynamically used by Linkis can be calculated as follows.
 
 EngineConnManager Total resources used = total memory + total number of cores =
-Number of people online at the same time \* (All types of engines occupy memory) \*Maximum number of concurrent users per user + number of people online at the same time \*
-(All types of engines occupy memory) \*Maximum number of concurrent users for a single user
+Number of people online at the same time \* (All types of engines occupy memory) \*maximum concurrency per user + number of people online at the same time \*
+(total memory occupied by all types of engine conns) \*maximum concurrency per user
 
 For example, when only spark, hive, and python engines are used and the maximum concurrency of a single user is 1, 50 people are used at the same time, Spark's driver memory is 1G, and Hive
 Client memory 1G, python client 1G, each engine uses 1 core, then it is 50 \*(1+1+1)G \*
 1 + 50 \*(1+1+1) cores\*1 = 150G memory + 150 CPU cores.
 
-During distributed deployment, the memory occupied by the microservice itself can be calculated according to each 2G. In the case of a large number of users, it is recommended to increase the memory of ps-publicservice to 6G, and it is recommended to reserve 10G of memory as a buffer.
+During distributed deployment, the memory occupied by the microservice itself can be calculated according to each 2G memory. In the case of a large number of users, it is recommended to increase the memory of ps-publicservice to 6G, and it is recommended to reserve 10G of memory as a buffer.
 The following configuration assumes that **each user starts two engines at the same time as an example**. **For a machine with 64G memory**, the reference configuration is as follows:
 
 - 10-50 people online at the same time

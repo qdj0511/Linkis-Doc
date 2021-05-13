@@ -26,7 +26,7 @@
 
 ### 1.4 文档改进
 
-Linkis 用户手册文档维护再github的Linkis-Doc项目中，可以编辑项目里的 Markdown 文件，通过提pr的方式来对文档做改进。
+Linkis 用户手册文档维护在github的Linkis-Doc项目中，可以编辑项目里的 Markdown 文件，通过提pr的方式来对文档做改进。
 
 ## 二、贡献流程
 
@@ -43,8 +43,7 @@ dev-1.0.0: 主要开发分支；
 ### 2.2 开发指引
 
 Linkis 前后端代码共用同一个代码库，但在开发上是分离的。在着手开发之前，请先将 Linkis
-项目 fork 一份到自己的 Github Repositories 中， 开发时请基于自己 Github Repositories 中的
-Linkis 代码库进行开发。
+项目 fork 一份到自己的 Github Repositories 中， 开发时请基于自己 Github Repositories 中的Linkis 代码库进行开发。
 
 我们建议克隆 dev-1.0.0 分支来开发，这样在向 Linkis 主项目提交 PR 时合并冲突的可能性会
 小很多
@@ -118,9 +117,8 @@ db/linkis_*.sql。
 **2.2.1.5** 打包
 
 ```
-1. 打完整 release 包需要修改根目录下 /assembly/src/main/assembly/assembly.xml 中相关
-版本信息，然后在根目录下执行: mvn clean package 即可；
-2. 打 每个模块 的包可直接在 模块目录下执行 mvn clean package。
+1. 打完整 release 包需要修改根目录下 /assembly/src/main/assembly/assembly.xml 中相关版本信息，然后在根目录下执行: mvn clean package 即可；
+2. 打每个模块 的包可直接在 模块目录下执行 mvn clean package。
 ```
 ### 2.3 Pull Request 指引
 
@@ -180,8 +178,7 @@ Review 的机会都没有。
 **3.1.1** 如何成为 **Committer**
 
 如果你对 Linkis 代码有过颇具价值的 PR 并且被合并，你可以通过官方微信群联系核心开发团
-队申请成为 Linkis 项目的 Committer；核心开发团队和其他 Committers 将会一起投票决定是
-否允许你的加入，如果得到足够票数，你将成为 Linkis 项目的 Committer。
+队申请成为 Linkis 项目的 Committer；核心开发团队和其他 Committers 将会一起投票决定是否允许你的加入，如果得到足够票数，你将成为 Linkis 项目的 Committer。
 
 **3.1.2 Committer** 的权利
 

@@ -19,7 +19,7 @@
 ### 2.1 Java测试代码
 建立Java的测试类UJESClientImplTestJ，具体接口含义可以见注释：
 ```java
-package com.webank.wedatasphere.linkis.client.test
+package com.webank.wedatasphere.linkis.client.test;
 
 import com.webank.wedatasphere.linkis.common.utils.Utils;
 import com.webank.wedatasphere.linkis.httpclient.dws.authentication.StaticAuthenticationStrategy;

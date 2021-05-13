@@ -1,12 +1,12 @@
-Introduction to Computing Management Desk
+Introduction to Computatoin Governance Console
 ==============
 
-> Linkis1.0 has added a new computing management console page, which can provide users with an interactive UI interface for viewing the execution of Linkis tasks, custom parameter configuration, engine health status, resource surplus, etc. to facilitate user development and Managed pages.
+> Linkis1.0 has added a new Computatoin Governance Console page, which can provide users with an interactive UI interface for viewing the execution of Linkis tasks, custom parameter configuration, engine health status, resource surplus, etc, and then simplify user development and management efforts.
 
-Computing governance structure
+Structure of Computatoin Governance Console
 ==============
 
-> The computing management console is mainly composed of the following functional pages:
+> The Computatoin Governance Console is mainly composed of the following functional pages:
 
 -[Global History](#Global_History)
 
@@ -28,7 +28,7 @@ Computing governance structure
 
 > `` wds.linkis.governance.station.admin=hadoop (multiple administrator usernames are separated by ‘,’)''
 
-Introduction to the functions and use of computing management console
+Introduction to the functions and use of Computatoin Governance Console
 ========================
 
 Global history
@@ -66,9 +66,9 @@ Parameter configuration
 > ![./media/image6.png](Images/parameter configuration interface.png)
 
 
-> The user can expand all the configuration information in the directory by clicking on the application type at the top and then selecting the engine type in the application. Modify the configuration information and click Save to take effect.
+> The user can expand all the configuration information in the directory by clicking on the application type at the top and then select the engine type in the application, modify the configuration information and click "Save" to take effect.
 
-> Edit catalog and new application types are only visible to the administrator. Click the edit button to delete the existing application and engine configuration (note! Deleting the application directly will delete all engine configurations under the application and cannot be restored), or add an engine, Click New Application to add application type.
+> Edit catalog and new application types are only visible to the administrator. Click the edit button to delete the existing application and engine configuration (note! Deleting the application directly will delete all engine configurations under the application and cannot be restored), or add an engine, or click "New Application" to add a new application type.
 
 > ![./media/image7.png](Images/edit directory.png)
 
@@ -92,7 +92,7 @@ ECM management
 > ![./media/image10.png](Images/ECM management interface.png)
 
 
-> Click the edit button to edit the label information of the ECM (only part of the label is allowed to be edited) and modify the status of the ECM.
+> Click the edit button to edit the label information of the ECM (only part of the labels are allowed to be edited) and modify the status of the ECM.
 
 > ![./media/image11.png](Images/ECM editing interface.png)
 
@@ -108,7 +108,7 @@ ECM management
 Microservice management
 ----------
 
-> The microservice management interface can view all microservice information under Linkis, and this interface is only visible to the administrator. Linkis' own microservices can be viewed by clicking on the Eureka registration center. The microservices associated with linkis will be listed directly on this interface.
+> The microservice management interface can view all microservice information under Linkis, and this interface is only visible to the administrator. Linkis's own microservices can be viewed by clicking on the Eureka registration center. The microservices associated with linkis will be listed directly on this interface.
 
 > ![](Images/microservice management interface.png)
 

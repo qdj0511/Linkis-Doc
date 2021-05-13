@@ -1,10 +1,10 @@
 ## 如何使用Linkis1.0  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Linkis作为一款成熟的计算中间件，为了满足不同的使用场景，提供多种使用和接入方式，概括为三类，分别是Client端使用、Scriptis端使用、DataSphere Studio端使用，其中Scriptis和DataSphere Studio是微众银行大数据平台室开源的数据分析平台，由于这两个项目本质上完全兼容Linkis，所以通过Scriptis和DataSphere Studio使用Linkis最为简单。  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Linkis为了满足不同的使用场景需求，提供多种使用和接入方式，概括为三类，分别是Client端使用、Scriptis端使用、DataSphere Studio端使用，其中Scriptis和DataSphere Studio是微众银行大数据平台室开源的数据分析平台，由于这两个项目本质上完全兼容Linkis，所以通过Scriptis和DataSphere Studio使用Linkis最为简单。  
 ## 1. Client端使用  
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果需要在Linkis的基础上，接入其它应用，需要针对Linkis提供的接口进行开发，Linkis提供了多种客户端接入接口，更详细的使用介绍可以参考以下内容：  
-- [**Restful API使用方式**](./../API_Documentations/REST_API.md)
-- [**JDBC API使用方式**](./../API_Documentations/JDBC_API.md)
+- [**Restful API使用方式**](./../API_Documentations/Linkis任务提交执行RestAPI文档.md)
+- [**JDBC API使用方式**](./../API_Documentations/任务提交执行JDBC_API文档.md)
 - [**Java SDK使用方式**](./../User_Manual/Linkis1.0用户使用文档.md)
 ## 2. Scriptis使用Linkis
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果需要使用Linkis完成交互式在线分析处理的工作，并且不需要诸如工作流开发、工作流调度、数据服务等数据分析应用工具，可以单独安装[**Scriptis**](https://github.com/WeBankFinTech/Scriptis)，详细安装教程可参考其对应的安装部署文档。  

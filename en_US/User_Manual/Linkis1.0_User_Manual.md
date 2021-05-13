@@ -1,6 +1,6 @@
 # Linkis User Manual
 
-> Linkis provides a convenient interface for calling JAVA and SCALA. It can be used only by introducing the linkis-computation-client module. After 1.0, the method of submitting with Label is added. The following will be compatible with 0.X and 1.0. New way to introduce
+> Linkis provides a convenient interface for calling JAVA and SCALA. It can be used only by introducing the linkis-computation-client module. After 1.0, the method of submitting with Label is added. The following will introduce both ways that compatible with 0.X and newly added in 1.0.
 
 ## 1. Introduce dependent modules
 ```
@@ -21,7 +21,7 @@ Such as:
 
 ### 2.1 Java test code
 
-Establish the Java test class UJESClientImplTestJ, the specific interface meaning can be seen in the notes:
+Create the Java test class UJESClientImplTestJ. Refer to the comments to understand the purposes of those interfaces:
 
 ```java
 package com.webank.wedatasphere.linkis.client.test;
@@ -195,7 +195,7 @@ object LinkisClientImplTest extends App {
 
 ## 3. Linkis1.0 new submit interface with Label support
 
-Linkis1.0 adds the client.submit method, which is used to interface with the new task execution interface of 1.0, and supports the input of Label and other parameters
+Linkis1.0 adds the client.submit method, which is used to adapt with the new task execution interface of 1.0, and supports the input of Label and other parameters
 
 ### 3.1 Java Test Class
 

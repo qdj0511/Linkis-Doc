@@ -2,11 +2,11 @@
 
 ### 一、引入依赖模块：
 第一种方式在pom里面依赖JDBC模块：
-```
+```xml
 <dependency>
- <groupId>com.webank.wedatasphere.linkis</groupId>
- <artifactId>linkis-ujes-jdbc</artifactId>
- <version>${linkis.version}</version>
+    <groupId>com.webank.wedatasphere.linkis</groupId>
+    <artifactId>linkis-ujes-jdbc</artifactId>
+    <version>${linkis.version}</version>
  </dependency>
 ```
 **注意:** 该模块还没有deploy到中央仓库，需要在ujes/jdbc目录里面执行`mvn install -Dmaven.test.skip=true`进行本地安装。
@@ -18,7 +18,7 @@
 
 ### 二、建立测试类：
 建立Java的测试类LinkisClientImplTestJ，具体接口含义可以见注释：
-```
+```java
  public static void main(String[] args) throws SQLException, ClassNotFoundException {
 
         //1. 加载驱动类：com.webank.wedatasphere.linkis.ujes.jdbc.UJESSQLDriver

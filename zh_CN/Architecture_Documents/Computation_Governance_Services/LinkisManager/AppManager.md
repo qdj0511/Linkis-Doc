@@ -6,7 +6,7 @@
 3. 需要对接Manager模块对外提供Engine的管理功能：包括Engine状态维护、引擎列表维护、引擎信息等
 4. AM需要管理EM服务，需要完成EM的注册并将资源注册转发给RM进行EM的资源注册
 5. AM需要对接Label模块，包括EM/Engine的增删需要通知标签管理器进行标签更新
-6. AM另外需要对接标签模块进行标签解析，并需要通过一系列标签获取一些列打好分的serverInstance列表（？EM和Engine怎么区分，1、标签完全不一样）
+6. AM另外需要对接标签模块进行标签解析，并需要通过一系列标签获取一些列打好分的serverInstance列表（EM和Engine怎么区分，1、标签完全不一样）
 7. 需要对外提供基础接口：包括引擎和引擎管理器的增删改，提供metric查询等
 
 ## 架构图
@@ -23,7 +23,7 @@
 
 ## 架构说明：
 
-AppManager主要包含了引擎服务和EM 服务：
+AppManager主要包含了引擎服务和EM服务：
 引擎服务包含了所有和引擎EngineConn相关的操作，如引擎创建、引擎复用、引擎切换、引擎回收、引擎停止、引擎销毁等。
 EM服务负责所有EngineConnManager的信息管理，可以在线上对ECM进行服务管理，包括标签修改，暂停ECM服务，获取ECM实例信息，获取ECM运行的引擎信息，kill掉ECM操作，还可以根据EM Node的信息查询所有的EngineNode,也支持按用户查找，保存了EM Node的负载信息、节点健康信息、资源使用信息等。
 新的EngineConnManager和EngineConn都支持标签管理，引擎的类型也增加了离线、流式、交互式支持。

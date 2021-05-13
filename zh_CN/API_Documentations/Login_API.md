@@ -10,8 +10,8 @@
 
 添加LDAP相关配置：
 ```bash
-wds.linkis.ldap.proxy.url=ldap://127.0.0.1:389/#您的LDAP服务URL
-wds.linkis.ldap.proxy.baseDN=dc=webank,dc=com#您的LDAP服务的配置    
+wds.linkis.ldap.proxy.url=ldap://127.0.0.1:389/ # 您的LDAP服务URL
+wds.linkis.ldap.proxy.baseDN=dc=webank,dc=com # 您的LDAP服务的配置    
 ```    
     
 ## 2.如何打开测试模式，实现免登录
@@ -25,7 +25,7 @@ wds.linkis.ldap.proxy.baseDN=dc=webank,dc=com#您的LDAP服务的配置
     
 将测试模式打开，参数如下：
 
-```properties
+```shell
     wds.linkis.test.mode=true   # 打开测试模式
     wds.linkis.test.user=hadoop  # 指定测试模式下，所有请求都代理给哪个用户
 ```

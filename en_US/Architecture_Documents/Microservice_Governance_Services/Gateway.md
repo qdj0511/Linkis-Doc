@@ -16,7 +16,7 @@ The bottom layer of the entire architecture is implemented based on "SpringCloud
 
 The detailed design involved is as follows：
 
-#### 一、Request Routing And Forwarding (With Label Information)
+#### 1、Request Routing And Forwarding (With Label Information)
 First, after the dispatcher of "SpringCloudGateway", the request enters the filter list of the gateway, and then enters the two main logic of "GatewayAuthorizationFilter" and "SpringCloudGatewayWebsocketFilter". 
 The filter integrates "DefaultGatewayParser" and "DefaultGatewayRouter" classes. From Parser to Router, execute the corresponding parse and route methods. 
 "DefaultGatewayParser" and "DefaultGatewayRouter" classes also contain custom Parser and Router, which are executed in the order of priority.
@@ -25,7 +25,7 @@ Now, we take the job execution request forwarding with label information as an e
 ![Gateway Request Routing](../../Images/Architecture/Gateway/gateway_server_dispatcher.png)
 
 
-#### 二、WebSocket Connection Forwarding Management
+#### 2、WebSocket Connection Forwarding Management
 By default, "Spring Cloud Gateway" only routes and forwards WebSocket request once, and cannot perform dynamic switching. 
 But under the Linkis's gateway architecture, each information interaction will be accompanied by a corresponding uri address to guide routing to different backend services.
 In addition to the "WebSocketService" which is responsible for connecting with the front-end and the client, 

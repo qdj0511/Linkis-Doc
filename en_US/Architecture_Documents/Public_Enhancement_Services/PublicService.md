@@ -7,7 +7,7 @@ Many variables, functions and configurations can be reused after the user comple
 
 ## **Architecture diagram**
 
-![](../../Images/Architecture/linkis-publicService-01.png)
+![Diagram](../../Images/Architecture/linkis-publicService-01.png)
 
 ## **Architecture Introduction**
 

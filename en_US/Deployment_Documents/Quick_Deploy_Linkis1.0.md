@@ -33,6 +33,21 @@ The following is the dependency information for each engine.
 | Shell       | No dependency               | If the path of logs and result sets are configured as hdfs://, then the HDFS environment is needed. |
 | Hive        | Hadoop and Hive Environment |                                                              |
 | Spark       | Hadoop/Hive/Spark           |                                                              |
+                                                         
+**Requirement: At least 4G memory is required to install Linkis. **
+                                                         
+The default JVM heap memory of each microservice is 512M, and the heap memory of each microservice can be adjusted uniformly by modifying `SERVER_HEAP_SIZE`. as follows:
+
+```bash
+    vim ${LINKIS_HOME}/config/linkis-env.sh
+```
+
+```bash
+    # java application default jvm memory.
+    export SERVER_HEAP_SIZE="512M"
+```
+
+----
 
 ## 2. Linkis environment preparation
 

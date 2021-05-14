@@ -32,6 +32,19 @@ Linkis1.0 默认已适配的引擎列表如下：
 | Hive| 依赖Hadoop和Hive环境 |  |
 | Spark| 依赖Hadoop/Hive/Spark |  |
 
+**要求：安装Linkis需要至少4G内存。** 
+
+默认每个微服务JVM堆内存为512M，可以通过修改`SERVER_HEAP_SIZE`来统一调整每个微服务的堆内存。如下：
+
+```bash
+    vim ${LINKIS_HOME}/config/linkis-env.sh
+```
+
+```bash
+    # java application default jvm memory.
+    export SERVER_HEAP_SIZE="512M"
+```
+
 ----
 
 ## 二、Linkis环境准备

@@ -32,7 +32,7 @@ The following is the dependency information for each engine.
 | JDBC        | No dependency               | If the path of logs and result sets are configured as hdfs://, then the HDFS environment is needed. |
 | Shell       | No dependency               | If the path of logs and result sets are configured as hdfs://, then the HDFS environment is needed. |
 | Hive        | Hadoop and Hive Environment |                                                              |
-| Spark       | Hadoop/Hive/Spark           |     
+| Spark       | Hadoop/Hive/Spark           |                                                              |
                                                          
 **Requirement: At least 4G memory is required to install Linkis. **
                                                          
